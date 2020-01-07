@@ -23,5 +23,9 @@ info:
     name: NFV-SOL WG
 
 externalDocs:
-  description: ETSI GS NFV-SOL 012 V0.0.2
+  description: ETSI GS NFV-SOL 012 V0.2.0
   url: https://docbox.etsi.org/ISG/NFV/Open/Drafts/SOL012ed331_Protocol_Spec_for_Policy_Mgmt_Intface/NFV-SOL012ed311v002.zip
+
+paths:
+  /nfvpolicy/api_versions:
+    $ref: '../endpoints/SOL012_endpoints.yaml#/endpoints/api_versions'

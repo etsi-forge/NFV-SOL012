@@ -1,0 +1,87 @@
+# Copyright (c) ETSI 2019.
+# https://forge.etsi.org/etsi-forge-copyright-notice.txt
+endpoints:
+  api_versions:
+    parameters:
+      - name: Version
+        description: >
+          Version of the API requested to use when responding to this request.
+        in: header
+        required: false
+        schema:
+          type: string
+      - name: Authorization
+        description: >-
+          The authorization token for the request. Reference: IETF RFC 7235
+        in: header
+        required: false
+        schema:
+          type: string
+    get:
+      summary: Retrieve API version information
+      description: >
+        The GET method reads API version information. This method shall follow the provisions specified in
+        table 4.6.3.3.3.2-1 for request and response data structures, and response codes. URI query parameters are not
+        supported.
+      responses:
+        200:
+          description: >
+            200 OK
+            
+            API version information was read successfully.
+            The response body shall contain 4.4 API version
+            information, as defined in clause 4.4.1.13.
+          content:
+            application/json:
+              schema:
+                $ref: '../components/SOL012_schemas.yaml#/components/schemas/ApiVersionInformation'
+          headers:
+            Content-Type:
+              description: The MIME type of the body of the response.
+              schema:
+                type: string
+                maximum: 1
+                minimum: 1
+            WWW-Authenticate:
+              description: >
+                Challenge if the corresponding HTTP request has not provided
+                authorization, or error details if the corresponding HTTP
+                request has provided an invalid authorization token.
+              schema:
+                type: string
+                maximum: 1
+                minimum: 0
+            Version:
+              description: The used API version.
+              schema:
+                type: string
+                maximum: 1
+                minimum: 1
+        400:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/400'
+        401:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/401'
+        403:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/403'
+        404:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/404'
+        405:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/405'
+        406:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/406'
+        413:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/413'
+        414:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/414'
+        416:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/416'
+        422:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/422'
+        429:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/429'
+        500:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/500'
+        503:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/503'
+        504:
+          $ref: '../components/SOL012_resp.yaml#/components/responses/504'
