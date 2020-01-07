@@ -1,0 +1,61 @@
+#!/bin/bash
+#Copyright (c) ETSI 2017.
+
+# This software is subject to copyrights owned by ETSI. Non-exclusive permission 
+# is hereby granted, free of charge, to copy, reproduce and amend this file 
+# under the following conditions: It is provided "as is", without warranty of any 
+# kind, expressed or implied. 
+
+# ETSI shall never be liable for any claim, damages, or other liability arising 
+# from its use or inability of use.This permission does not apply to any documentation 
+# associated with this file for which ETSI keeps all rights reserved. The present 
+# copyright notice shall be included in all copies of whole or part of this 
+# software and shall not imply any sub-license right.
+#
+# Author: michele.carignani@etsi.org
+#
+# This script takes an OpenAPI file in input and creates
+# a PDF file with the content.
+#
+# Prerequisites: 
+#  - https://github.com/Swagger2Markup/swagger2markup-cli
+#  - Asciidoctor (sudo apt-get install asciidoctor)
+#  - Asciidoctor-pdf (sudo gem install asciidoctor-pdf)
+#
+# Usage:
+#    oas2pdf <oasfile> (e.g. myapi.json)
+#
+# Result:
+#    A new pdf file is created in the working directory (e.g. myapi.pdf)
+#
+#
+#
+#
+
+# Configuration
+
+# Change this if needed
+SWG2MRKUP=swg2mrkup
+ASCIIDOCPDF=asciidoctor-pdf
+
+# Setup
+WD=$(pwd)
+TWD=$(mktemp -d)
+
+INFILE=$(basename ${1?"Error: missing input file name"} )
+OUTFILE="${INFILE%.*}"
+
+echo "$INFILE, $OUTFILE"
+
+echo "Converting to asciidoc.."
+${SWG2MRKUP} convert -i "$1" -f "$TWD/$OUTFILE"
+echo
+
+echo "Converting to PDF.."
+"${ASCIIDOCPDF}" "$TWD/${OUTFILE}.adoc" -o "$WD/${OUTFILE}.pdf"
+echo
+
+echo "Done."
+# Clean up
+rm -r $TWD
+
