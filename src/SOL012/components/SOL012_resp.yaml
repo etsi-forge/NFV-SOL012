@@ -37,7 +37,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     303:
       description: >
@@ -120,7 +120,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     401:
       description: >
@@ -156,7 +156,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     403:
       description: >
@@ -192,7 +192,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     404:
       description: >
@@ -233,7 +233,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     405:
       description: >
@@ -267,7 +267,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     406:
       description: >
@@ -302,7 +302,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     409:
       description: >
@@ -333,7 +333,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     412:
       description: >
@@ -369,7 +369,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     413:
       description: >
@@ -404,7 +404,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     414:
       description: >
@@ -439,7 +439,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     416:
       description: >
@@ -470,7 +470,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     422:
       description: >
@@ -508,7 +508,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     429:
       description: >
@@ -548,7 +548,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     500:
       description: >
@@ -584,7 +584,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     503:
       description: >
@@ -620,7 +620,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
     504:
       description: >
@@ -655,4 +655,4 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL011_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"

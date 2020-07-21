@@ -14,7 +14,7 @@ info:
     url: https://forge.etsi.org/etsi-forge-copyright-notice.txt
 externalDocs:
   description: ETSI GS NFV-SOL 012 V3.3.1
-  url: https://docbox.etsi.org/ISG/NFV/Open/Drafts/SOL012ed331_Protocol_Spec_for_Policy_Mgmt_Intface/NFV-SOL012ed311v002.zip
+  url: https://docbox.etsi.org/ISG/NFV/Open/Drafts/SOL012ed331_Protocol_Spec_for_Policy_Mgmt_Intface/NFV-SOL012ed331v010.zip
 
 security:
   - OauthSecurity:
@@ -27,3 +27,835 @@ paths:
   "/api_versions":
     $ref: '../endpoints/SOL012_endpoints.yaml#/endpoints/api_versions'
 
+  "/policies":
+    description: >-
+      This resource represents policies. The API consumer can use this resource to create a policy, and to query multiple policies.
+    post:
+      description: >-
+        The POST method creates a new individual policy resource.
+        This method shall follow the provisions specified in the tables 5.5.3.3.1-1 and 5.5.3.3.1-2 for URI query parameters,
+        request and response data structures, and response codes.
+        As the result of successfully executing this method, a new "individual policy" resource as defined in clause
+        5.5.4 shall have been created, and the value of the "activationStatus" attribute in the representation of that
+        resource shall be "DEACTIVATED". A notification of type PolicyChangeNotification shall be triggered as part of
+        successfully executing this method as defined in clause 5.6.2.7.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+      requestBody:
+        $ref: "#/components/requestBodies/PolicyCreationRequest"
+      responses:
+        "201":
+          $ref: '#/components/responses/Policy.post.201'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+   get:
+      description: >-
+        The GET method queries information about multiple policies.
+        This method shall follow the provisions specified in the tables 5.5.3.3.2-1 and 5.5.3.3.2-2
+        for URI query parameters, request and response data structures, and response codes.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/filter"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/nextpage_opaque_marker"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+      responses:
+        "200":
+          $ref: '#/components/responses/Policy.get.200'
+        "400":
+          $ref: '#/components/responses/Policy.get.400'
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+
+  "/policies/{policyId}":
+    description: >
+      This resource represents an individual policy. The API consumer can use this resource to modify an individual
+      policy, to read information about the policy and delete the policy.
+    parameters:
+      - $ref: '#/components/parameters/policyId'
+    get:
+      description: >
+        The GET method retrieves information about a policy by reading an individual policy resource.
+        This method shall follow the provisions specified in the tables 5.5.4.3.2-1 and 5.5.4.3.2-2 for URI
+        query parameters, request and response data structures, and response codes.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+      responses:
+        "200":
+          $ref: '#/components/responses/IndividualPolicy.get.200'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+    patch:
+      description: >
+        The PATCH method modifies a policy.
+        This method shall follow the provisions specified in the tables 5.5.4.3.4-1 and 5.5.4.3.4-2 for URI
+        query parameters, request and response data structures, and response codes.
+        Modification of a policy includes three functionalities: activating/deactivating the policy,
+        changing the associations of the policy, and changing the selected version of the policy.
+        The three functionalities may be combined flexibly in one request unless there's conflict with
+        the state of the policy.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+      requestBody:
+        $ref: "#/components/requestBodies/ModifyPolicyRequest"
+      responses:
+        "200":
+          $ref: '#/components/responses/PolicyModifications.patch.200'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "409":
+          $ref: '#/components/responses/PolicyModifications.patch.409'
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+
+    delete:
+      description: >
+        The DELETE method deletes an individual policy.
+        This method shall follow the provisions specified in the tables 5.5.4.3.5-1 and 5.5.4.3.5-2 for URI
+        query parameters, request and response data structures, and response codes.
+        As the result of successfully executing this method, the "individual policy" resource shall not exist
+        any longer. A notification of type "PolicyChangeNotification" shall be triggered as part of successfully
+        executing this method as defined in clause 5.6.2.7.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+      responses:
+        "204":
+          $ref: '#/components/responses/Policy.delete.204'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "409":
+          $ref: '#/components/responses/Policy.delete.409'
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+
+  "/policies/{policyId}/selected_versions":
+    description: >
+      This resource represents the selected version of an individual policy. The API consumer can use this resource
+      to read the content of the selected version of the policy.
+      The selected version is the version to be used when activating the policy and is then enforced as long as the
+      policy is in ACTIVATED state.
+    parameters:
+      - $ref: '#/components/parameters/policyId'
+    get:
+      description: >
+        The GET method fetches the content of the selected version of an individual policy.
+        This method shall follow the provisions specified in the tables 5.5.5.3.2-1 and 5.5.5.3.2-2 for URI query
+        parameters, request and response data structures, and response codes.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+      responses:
+        "200":
+          $ref: '#/components/responses/PolicySelectedVersion.get.200'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: '#/components/responses/PolicySelectedVersion.get.404'
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+
+  "/policies/{policyId}/versions/{version}":
+    description: >
+      This resource represents a particular version of an individual policy. The API consumer can use this resource
+      to transfer the content, read the content and delete a particular version of a policy.
+    parameters:
+      - $ref: '#/components/parameters/policyId'
+      - $ref: '#/components/parameters/version'
+    get:
+      description: >
+        The GET method fetches the content of a particular version of an individual policy.
+        This method shall follow the provisions specified in the tables 5.5.6.3.2-1 and 5.5.6.3.2-2 for URI
+        query parameters, request and response data structures, and response codes.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+      responses:
+        "200":
+          $ref: '#/components/responses/IndividualPolicyVersion.get.200'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+    put:
+      description: >
+        The PUT method transfers the content of a particular version of an individual policy.
+        This method shall follow the provisions specified in the tables 5.5.6.3.3-1 and 5.5.6.3.3-2 for
+        URI query parameters, request and response data structures, and response codes.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+      requestBody:
+        $ref: '#/components/requestBodies/PolicyVersionTransferRequest'
+      responses:
+        "201":
+          $ref: '#/components/responses/PolicyVersionTransfer.put.201'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "409":
+          $ref: '#/components/responses/PolicyVersionTransfer.put.409'
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+    delete:
+      description: >
+        The DELETE method deletes a particular version of an individual policy.
+        This method shall follow the provisions specified in the tables 5.5.6.3.5-1 and 5.5.6.3.5-2 for URI query
+        parameters, request and response data structures, and response codes.
+        As the result of successfully executing this method, the "particular version of an individual policy" resource
+        shall be deleted. It's not allowed to delete the selected version of the individual policy.
+        A notification of type "PolicyChangeNotification" shall be triggered as part of successfully executing this
+        method as defined in clause 5.6.2.8.
+      responses:
+
+
+  "/subscriptions":
+
+  "/subscriptions/{subscriptionId}":
+
+components:
+  parameters:
+    policyId:
+      name: policyId
+      description: >
+        Identifier of the policy. This identifier can be retrieved from the resource referenced by the "Location" HTTP
+        header in the response to a POST request creating a new "individual policy" resource. It can also be retrieved
+        from the "id" attribute in the payload body of that response.
+      in: path
+      required: true
+      schema:
+        $ref: '../components/SOL012_schemas.yaml#/components/schemas/Identifier'
+
+    version:
+      name: version
+      description: >
+        Version of the policy. This URI variable is provided by the API consumer in a PUT request creating the new
+        particular version of an individual policy resource. It can be retrieved from the "versions" attribute in the
+        payload body of the response to a GET request to the “individual policy” resource.
+      in: path
+      required: true
+      schema:
+        type: string
+
+  schemas:
+    CreatePolicyRequest:
+      description: >
+        This type represents request parameters for creating a policy. It shall comply with the provisions defined
+        in table 5.6.2.2-1.
+      type: object
+      properties:
+        designer:
+          description: >
+            Human readable name of the designer of the policy.
+          type: string
+        name:
+          description: >
+            Human readable name of the policy.
+          type: string
+        pfId:
+          description: >
+            Identifier of the Policy Function (PF) which enforces the policy. The PF is either a VNFM or a VIM.
+            Cardinality of zero indicates that the PF is the API producer itself.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+      required:
+        - designer
+        - name
+
+    Policy:
+      description: >-
+        This type represents an individual policy. It shall comply with the provisions defined in table 5.6.2.3-1.
+      type: object
+      properties:
+        id:
+          description: >
+            Identifier of the policy.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        designer:
+          description: >
+            Human readable name of the designer of the policy.
+          type: string
+        name:
+          description: >
+            Human readable name of the policy.
+          type: string
+        pfId:
+          description: >
+            Identifier of the Policy Function (PF) which enforces the policy. The PF is either a VNFM or a VIM.
+            Cardinality of zero indicates that the PF is the API producer itself.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        versions:
+          description: >
+            Versions of the policy. Shall be present if at least one version of the policy has been transferred.
+          type: array
+          items:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
+        selectedVersion:
+          description: >
+            Selected version of the policy. Shall be present if one or more versions of the policy have been transferred.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
+
+        policy:
+          description: >
+            Content of the policy.
+        activationStatus:
+          description: >
+            Status of the policy on whether it is activated or deactivated.
+          $ref: "#/components/schemas/ActivationStatus"
+        associations:
+          description: >
+            Identifiers of the entities that the API producer manages and to which the policy associates to.
+          type: array
+          items:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        _links:
+          description: >
+            Links for this resource
+          type: object
+          properties:
+            self:
+              description: >
+                URI of this resource
+              $ref: "../components/SOL012_schemas.yaml#/components/schemas/Link"
+            selected:
+              description: >
+                URI of the selected version of this policy, if exists.
+              $ref: "../components/SOL012_schemas.yaml#/components/schemas/Link"
+            versions:
+              description: >
+                URIs of all the transferred versions of this policy, if exists.
+              type: array
+              items:
+                $ref: "../components/SOL012_schemas.yaml#/components/schemas/Link"
+          required:
+            - self
+      required:
+        - id
+        - designer
+        - name
+        - policy
+        - activationStatus
+        - _links
+
+    ActivationStatus:
+      description: >
+        The enumeration ActivationStatus shall comply with the provisions defined in table 5.6.4.3-1.
+        It indicates the activation status of a policy.
+      type: string
+      enum:
+        - ACTIVATED
+        - DEACTIVATED
+
+    PolicyModifications:
+      description: >
+        This type represents the parameters for modifying a policy. It shall comply with the provisions
+        defined in table 5.6.2.4-1
+      type: object
+      properties:
+        activationStatus:
+          description: >
+            New activation status of the policy.
+          $ref: "#/components/schemas/ActivationStatus"
+        selectedVersion:
+          description: >
+            New version of the policy to be selected.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
+        associations:
+          description: >
+            Modified associations of the policy, includes the identifiers of the entities that the API
+            producer manages and to which the policy associates to.
+          type: array
+          items:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+
+  responses:
+    Policy.post.201:
+      description: >
+        201 Created
+
+        Shall be returned when a policy has been created successfully.
+        The response body shall contain a representation of the individual policy, as defined in clause 5.6.2.3.
+        The HTTP response shall include a "Location" HTTP header that contains the resource URI of the created policy.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+        Location:
+          description: >
+            The resource URI of the created resource.
+          schema:
+            type: string
+            format: url
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Policy"
+
+    Policy.get.200:
+      description: >
+        Shall be returned when information about zero or more policies has been queried successfully.
+        The response body shall contain in an array the representations of zero or more policies, as defined
+        in clause 5.6.2.3.
+        If the "filter" URI parameter was supplied in the request and is supported, the data in the response body
+        shall have been transformed according to the rules specified in clauses 5.2.2 and 5.3.2 of
+        ETSI GS NFV-SOL 013 [6], respectively.
+        If the API producer supports alternative 2 (paging) according to clause 5.4.2.1 of ETSI GS NFV-SOL 013 [6]
+        for this resource, inclusion of the Link HTTP header in this response shall follow the provisions in clause
+        5.4.2.3 of ETSI GS NFV-SOL 013 [6].
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+        Link:
+          description: >
+            Reference to other resources. Link HTTP header in this response
+            shall follow the provisions in clause 5.4.2.3 of ETSI GS NFV-SOL 013.
+          schema:
+            type: string
+            minimum: 0
+            maximum: 1
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Policy"
+
+    Policy.get.400:
+      description: >
+        Shall be returned upon the following error: Invalid attribute-based filtering expression.
+        The response body shall contain a ProblemDetails structure, in which the "detail" attribute
+        should convey more information about the error.
+
+        Shall be returned upon the following error: Response too big.
+        If the API producer supports alternative 1 (error) according to clause 5.4.2.1 of ETSI GS NFV-SOL 013 [6]
+        for this resource, this error response shall follow the provisions in clause 5.4.2.2 of ETSI GS NFV-SOL 013 [6].
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+
+    IndividualPolicy.get.200:
+      description: >
+        Shall be returned when information about an individual policy has been read successfully.
+        The response body shall contain a representation of the policy, as defined in clause 5.6.2.3.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Policy"
+
+    PolicyModifications.patch.200:
+      description: >
+        200 OK
+
+        Shall be returned when the modifications have been processed successfully.
+        The response body shall contain a representation of modifications of the policy, as defined in clause 5.6.2.4.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/PolicyModifications"
+
+    PolicyModifications.patch.409:
+      description: >
+        409 Conflict
+
+        Shall be returned upon the following error: The operation cannot be executed currently, due to a conflict
+        with the state of the resource.
+        Typically, this is due to the fact that no version of the policy has been transferred; that activating a
+        policy in ACTIVATED state; that deactivating a policy in DEACTIVATED state.
+        The response body shall contain a ProblemDetails structure, in which the "detail" attribute shall convey
+        more information about the error.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+
+    Policy.delete.204:
+      description: >
+        204 No Content
+
+        Shall be returned when the individual policy has been deleted successfully.
+        The response body shall be empty
+
+    Policy.delete.409:
+      description: >
+        409 Conflict
+
+        Shall be returned upon the following error: The operation cannot be executed currently, due to a
+        conflict with the state of the resource.
+        Typically, this is due to the fact that the policy is in ACTIVATED state.
+        The response body shall contain a ProblemDetails structure, in which the "detail" attribute shall
+        convey more information about the error.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+
+    PolicySelectedVersion.get.200:
+      description: >
+        200 OK
+        Shall be returned when the content of the selected version of an individual policy has been read successfully.
+        The response body shall include a copy of the policy content.
+        The "Content-Type" HTTP header shall be set according to the type of the policy content.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+        Content-Type:
+          description: >
+            The "Content-Type" HTTP header shall be set according to the type of the policy content
+        content:
+
+    PolicySelectedVersion.get.404:
+      description: >
+        404 Not Found
+
+        Shall be returned upon the following error: The API producer did not find a current representation for the
+        target resource or is not willing to disclose that one exists.
+        The general cause for this error and its handling is specified in clause 6.4 of ETSI GS NFV-SOL 013 [6],
+        including rules for the presence of the response body.
+        Specifically in case of this resource, the response code 404 shall also be returned if no version of the
+        policy has been transferred.
+        In this case, the response body shall be present, and shall contain a ProblemDetails structure, in which
+        the "detail" attribute shall convey more information about the error.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+
+    IndividualPolicyVersion.get.200:
+      description: >
+        200 OK
+
+        Shall be returned when the content of a particular version of an individual policy has been read successfully.
+        The response body shall include a copy of the policy content.
+        The "Content-Type" HTTP header shall be set according to the type of the policy content.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+        Content-Type:
+          description: >
+            The "Content-Type" HTTP header shall be set according to the type of the policy content
+        content:
+
+    PolicyVersionTransfer.put.201:
+      description: >
+        201 Created
+
+        Shall be returned when the policy content has been transferred successfully.
+        The response body shall be empty.
+        Editor's note: It is FFS whether an empty payload is allowed for 201 Created response
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+
+    PolicyVersionTransfer.put.409:
+      description: >
+        409 Conflict
+
+        Shall be returned upon the following error: The operation cannot be executed currently,
+        due to a conflict with an existing resource.
+        Typically, this is due to the fact that the particular version has already been transferred to the API producer.
+        The response body shall contain a ProblemDetails structure, in which the "detail" attribute shall convey more
+        information about the error.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+
+  requestBodies:
+    PolicyCreationRequest:
+      description: >
+        This type represents request parameters for creating a policy. It shall comply with the provisions defined
+        in table 5.6.2.2-1.
+      content:
+        application/json:
+          schema:
+           $ref: "#/components/schemas/CreatePolicyRequest"
+      required: true
+
+    ModifyPolicyRequest:
+      description: >
+        The parameter for the policy modifications, as defined in clause 5.6.2.4.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/PolicyModifications"
+
+    PolicyVersionTransferRequest:
+      description: >
+        The payload body contains a copy of the policy content.
+        The "Content-Type" HTTP header shall be set according to the type of the policy content.
+      content:
