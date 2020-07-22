@@ -730,6 +730,8 @@ components:
         Content-Type:
           description: >
             The "Content-Type" HTTP header shall be set according to the type of the policy content
+          schema:
+            type: string
       content:
         application/*:
           schema:
@@ -789,6 +791,8 @@ components:
         Content-Type:
           description: >
             The "Content-Type" HTTP header shall be set according to the type of the policy content
+          schema:
+            type: string
       content:
         application/*:
           schema:
