@@ -11,10 +11,8 @@ rm build/*-API.json
 
 cd docker
 
-chmod +x build-container.sh
 ./build-container.sh
 
-chmod +x run-container.sh
 ./run-container.sh "${run_dir}"
 OUTCOME=$?
 
