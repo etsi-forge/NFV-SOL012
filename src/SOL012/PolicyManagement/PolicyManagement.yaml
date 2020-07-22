@@ -342,11 +342,34 @@ paths:
         A notification of type "PolicyChangeNotification" shall be triggered as part of successfully executing this
         method as defined in clause 5.6.2.8.
       responses:
+        "204":
+          $ref: '#/components/responses/PolicyVersion.delete.204'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "409":
+          $ref: '#/components/responses/PolicyVersion.delete.409'
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
 
+#  "/subscriptions":
 
-  "/subscriptions":
-
-  "/subscriptions/{subscriptionId}":
+#  "/subscriptions/{subscriptionId}":
 
 components:
   parameters:
@@ -680,6 +703,19 @@ components:
 
         Shall be returned when the individual policy has been deleted successfully.
         The response body shall be empty
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
 
     Policy.delete.409:
       description: >
@@ -829,6 +865,53 @@ components:
         Typically, this is due to the fact that the particular version has already been transferred to the API producer.
         The response body shall contain a ProblemDetails structure, in which the "detail" attribute shall convey more
         information about the error.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+
+    PolicyVersion.delete.204:
+      description: >
+        204 No Content
+
+        Shall be returned when a particular version of an individual policy has been deleted successfully.
+        The response body shall be empty
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided
+            authorization, or error details if the corresponding HTTP
+            request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+
+    PolicyVersion.delete.409:
+      description: >
+        409 Conflict
+
+        Shall be returned upon the following error: The operation cannot be executed currently, due to a
+        conflict with the state of the resource.
+        Typically, this is due to the fact that the requested version is the selected version.
+        The response body shall contain a ProblemDetails structure, in which the "detail" attribute shall
+        convey more information about the error.
       headers:
         WWW-Authenticate:
           description: >
