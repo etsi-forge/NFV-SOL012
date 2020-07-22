@@ -730,7 +730,11 @@ components:
         Content-Type:
           description: >
             The "Content-Type" HTTP header shall be set according to the type of the policy content
-        content:
+      content:
+        application/*:
+          schema:
+            type: object
+            additionalProperties: true
 
     PolicySelectedVersion.get.404:
       description: >
@@ -785,7 +789,11 @@ components:
         Content-Type:
           description: >
             The "Content-Type" HTTP header shall be set according to the type of the policy content
-        content:
+      content:
+        application/*:
+          schema:
+            type: object
+            additionalProperties: true
 
     PolicyVersionTransfer.put.201:
       description: >
@@ -859,3 +867,7 @@ components:
         The payload body contains a copy of the policy content.
         The "Content-Type" HTTP header shall be set according to the type of the policy content.
       content:
+        application/*:
+          schema:
+            type: object
+            additionalProperties: true
