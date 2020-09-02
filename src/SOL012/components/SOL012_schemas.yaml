@@ -281,3 +281,50 @@ components:
           type: string
           format: URI
         #TODO: How to express "any additional attributes"?
+
+    ActivationStatus:
+      description: >
+        The enumeration ActivationStatus shall comply with the provisions defined in table 5.6.4.3-1.
+        It indicates the activation status of a policy.
+      type: string
+      enum:
+        - ACTIVATED
+        - DEACTIVATED
+
+    PolicyModifications:
+      description: >
+        This type represents the parameters for modifying a policy. It shall comply with the provisions
+        defined in table 5.6.2.4-1
+      type: object
+      properties:
+        activationStatus:
+          description: >
+            New activation status of the policy.
+          $ref: "#/components/schemas/ActivationStatus"
+        selectedVersion:
+          description: >
+            New version of the policy to be selected.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
+        associations:
+          description: >
+            Modified associations of the policy, includes the identifiers of the entities that the API
+            producer manages and to which the policy associates to.
+          type: array
+          items:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+
+    PolicyOperationType:
+      description: >
+        The enumeration PolicyOperationType shall comply with the provisions defined in table 5.6.4.4-1. 
+        It indicates the type of the policy change.
+        Permitted values:
+        * CREATE_POLICY:	The policy is created.
+        * TRANSFER_POLICY:	The policy is transferred.
+        * DELETE_POLICY:	The policy is deleted.
+        * MODIFY_POLICY:	The policy is modified.
+      type: string
+      enum:
+        - CREATE_POLICY
+        - TRANSFER_POLICY
+        - DELETE_POLICY
+        - MODIFY_POLICY

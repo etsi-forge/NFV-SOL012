@@ -367,10 +367,160 @@ paths:
         "504":
           $ref: ../components/SOL012_resp.yaml#/components/responses/504
 
-#  "/subscriptions":
+  "/subscriptions":
+    description: >-
+      This resource represents subscriptions. The API consumer can use this resource to subscribe to notifications 
+      related to policy changes and any detected policy conflicts, and to query its subscriptions.
+    post:
+      description: >-
+        The POST method creates a new subscription.
+        This method shall follow the provisions specified in the tables 5.5.7.3.1-1 and 5.5.7.3.1-2 for URI query parameters, 
+        request and response data structures, and response codes.
+        As the result of successfully executing this method, a new "Individual subscription" resource as defined in clause 5.5.6 
+        shall have been created. This method shall not trigger any notification.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+      requestBody:
+        $ref: '#/components/requestBodies/PolicySubscriptionCreateRequest'
+      responses:
+        "201":
+          $ref: '#/components/responses/Subscriptions.post.201'
+        "303":
+          $ref: '#/components/responses/Subscriptions.post.303'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+    get:
+      description: >-
+        The GET method queries the list of active subscriptions of the functional block that invokes the method. 
+        It can be used e.g. for resynchronization after error situations. 
+        This method shall follow the provisions specified in the tables 5.5.7.3.2-1 and 5.5.7.3.2-2 for 
+        URI query parameters, request and response data structures, and response codes.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/filter"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/nextpage_opaque_marker"
+      responses:
+        "200":
+          $ref: '#/components/responses/Subscriptions.get.200'
+        "400":
+          $ref: '#/components/responses/Subscriptions.get.400'
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
 
-#  "/subscriptions/{subscriptionId}":
-
+  "/subscriptions/{subscriptionId}":
+    description: >-
+      This resource represents an individual subscription. The API consumer can use this resource to read and to 
+      terminate a subscription to notifications related to policy management.
+    parameters:
+      - $ref: '#/components/parameters/subscriptionId'
+    get:
+      description: >-
+        The GET method retrieves information about a subscription by reading an "Individual subscription" resource.
+        This method shall follow the provisions specified in the tables 5.5.8.3.2-1 and 5.5.8.3.2-2 for URI query 
+        parameters, request and response data structures, and response codes.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+      responses:
+        "200":
+          $ref: '#/components/responses/IndividualSubscription.get.200'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+    delete:
+      description: >-
+        The DELETE method terminates an individual subscription. This method shall follow the provisions specified 
+        in the tables 5.5.8.3.5-1 and 5.5.8.3.5-2 for URI query parameters, request and response data structures, 
+        and response codes.
+        As the result of successfully executing this method, the "Individual subscription" resource shall not exist 
+        any longer. This means that no notifications for that subscription shall be sent to the formerly-subscribed 
+        API consumer. 
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+      responses:
+        "204":
+          $ref: '#/components/responses/IndividualSubscription.delete.204'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "404":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "409":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/409
+        "422":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+        "504":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+      
 components:
   parameters:
     policyId:
@@ -394,6 +544,17 @@ components:
       required: true
       schema:
         type: string
+
+    subscriptionId:
+      name: subscriptionId
+      description: >
+        Identifier of the subscription. This identifier can be retrieved from the resource referenced by the 
+        "Location" HTTP header in the response to a POST request creating a new "Individual subscription" resource. 
+        It can also be retrieved from the "id" attribute in the payload body of that response.
+      in: path
+      required: true
+      schema:
+        $ref: '../components/SOL012_schemas.yaml#/components/schemas/Identifier'
 
   schemas:
     CreatePolicyRequest:
@@ -451,14 +612,13 @@ components:
           description: >
             Selected version of the policy. Shall be present if one or more versions of the policy have been transferred.
           $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
-
         policy:
           description: >
             Content of the policy.
         activationStatus:
           description: >
             Status of the policy on whether it is activated or deactivated.
-          $ref: "#/components/schemas/ActivationStatus"
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/ActivationStatus"
         associations:
           description: >
             Identifiers of the entities that the API producer manages and to which the policy associates to.
@@ -494,36 +654,104 @@ components:
         - activationStatus
         - _links
 
-    ActivationStatus:
+    PolicySubscriptionRequest:
       description: >
-        The enumeration ActivationStatus shall comply with the provisions defined in table 5.6.4.3-1.
-        It indicates the activation status of a policy.
-      type: string
-      enum:
-        - ACTIVATED
-        - DEACTIVATED
-
-    PolicyModifications:
-      description: >
-        This type represents the parameters for modifying a policy. It shall comply with the provisions
-        defined in table 5.6.2.4-1
+        This type represents a subscription request related to notifications about policy changes 
+        and policy conflicts. It shall comply with the provisions defined in table 5.6.2.5-1.
       type: object
       properties:
-        activationStatus:
+        filter:
           description: >
-            New activation status of the policy.
-          $ref: "#/components/schemas/ActivationStatus"
-        selectedVersion:
+            Filter settings for this subscription, to define the subset of all notifications this subscription relates to. 
+            A particular notification is sent to the subscriber if the filter matches, or if there is no filter.
+          $ref: "#/components/schemas/PolicyNotificationsFilter"
+        callbackUri:
           description: >
-            New version of the policy to be selected.
-          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
-        associations:
+            The URI of the endpoint to send the notification to.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Uri"
+        authentication:
           description: >
-            Modified associations of the policy, includes the identifiers of the entities that the API
-            producer manages and to which the policy associates to.
+            Authentication parameters to configure the use of Authorization when sending notifications 
+            corresponding to this subscription, as defined in clause 8.3.4 of ETSI GS NFV-SOL 013.
+            This attribute shall only be present if the subscriber requires authorization of notifications.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/SubscriptionAuthentication"
+      required:
+        - callbackUri
+
+    PolicySubscription:
+      description: >
+        This type represents a subscription related to notifications about policy changes and policy conflicts. 
+        It shall comply with the provisions defined in table 5.6.2.6-1.
+      type: object
+      properties:
+        id:
+          description: >
+            Identifier of this subscription resource.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        filter:
+          description: >
+            Filter settings for this subscription, to define the subset of all notifications this subscription 
+            relates to. A particular notification is sent to the subscriber if the filter matches, or if there 
+            is no filter.
+          $ref: "#/components/schemas/PolicyNotificationsFilter"
+        callbackUri:
+          description: >
+            The URI of the endpoint to send the notification to.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Uri"
+        _links:
+          description: >
+            Links for this resource.
+          type: object
+          properties:
+            self:
+              description: >
+                URI of this resource.
+              $ref: "../components/SOL012_schemas.yaml#/components/schemas/Link"
+          required:
+            - self  
+      required:
+        - id
+        - callbackUri
+        - _links
+
+    PolicyNotificationsFilter:
+      description: >
+        This type represents a subscription filter related to notifications about policy changes and policy conflicts. 
+        It shall comply with the provisions defined in table 5.6.3.2-1.
+        At a particular nesting level in the filter structure, the following applies: All attributes shall match in 
+        order for the filter to match (logical "and" between different filter attributes). If an attribute is an array, 
+        the attribute shall match if at least one of the values in the array matches (logical "or" between the values 
+        of one filter attribute).
+      type: object
+      properties:
+        notificationTypes:
+          description: >
+            Match particular notification types.
+            Permitted values:
+            -	PolicyChangeNotification
+            -	PolicyConflictNotification
+            The permitted values of the "notificationTypes" attribute are spelled exactly as the names of the notification 
+            types to facilitate automated code generation systems.
+          type: array
+          items:
+            type: string
+            enum:
+              - PolicyChangeNotification
+              - PolicyConflictNotification
+        policyIds:
+          description: >
+            Match particular policy identifiers.
+            For "PolicyConflictNotification", the notification is sent if any of the policies specified in the subscription 
+            is impacted by the conflict, as defined in clause 5.6.2.8.
           type: array
           items:
             $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        changeTypes:
+          description: >
+            Match particular policy management operation types that cause the change of the policy.
+          type: array
+          items:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/PolicyOperationType"
 
   responses:
     Policy.post.201:
@@ -667,7 +895,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/PolicyModifications"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/PolicyModifications"
 
     PolicyModifications.patch.409:
       description: >
@@ -930,6 +1158,178 @@ components:
           schema:
             $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
 
+    Subscriptions.post.201:
+      description: >
+        201 Created
+
+        Shall be returned when the subscription has been created successfully. 
+        A representation of the created subscription resource shall be returned in the response body, 
+        as defined in clause 5.6.2.6.
+        The HTTP response shall include a "Location" HTTP header that points to the created 
+        "Individual subscription" resource.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided authorization, or error details 
+            if the corresponding HTTP request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+        Location:
+          description: >
+            The resource URI of the created resource.
+          schema:
+            type: string
+            format: url
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/PolicySubscription"
+
+    Subscriptions.post.303:
+      description: >
+        303 See Other
+
+        Shall be returned if a subscription with the same callbackUri and the same filter already exists 
+        and the policy of the API producer is to not create redundant subscriptions.
+        The HTTP response shall include a "Location" HTTP header that contains the resource URI of 
+        the existing "individual subscription" resource.
+        The response body shall be empty.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided authorization, or error details 
+            if the corresponding HTTP request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+        Location:
+          description: >
+            The resource URI of the created resource.
+          schema:
+            type: string
+            format: url
+        
+    Subscriptions.get.200:
+      description: >
+        200 OK
+
+        Shall be returned when the list of subscriptions has been queried successfully.
+        The response body shall contain in an array the representations of all active subscriptions 
+        of the functional block that invokes the method, i.e. zero or more representations of policy 
+        subscriptions as defined in clause 5.6.2.6.
+        If the "filter" URI parameter was supplied in the request, the data in the response body shall 
+        have been transformed according to the rules specified in clause 5.2.2 of ETSI GS NFV-SOL 013.
+        If the API producer supports alternative 2 (paging) according to clause 5.4.2.1 of 
+        ETSI GS NFV-SOL 013 for this resource, inclusion of the Link HTTP header in this response 
+        shall follow the provisions in clause 5.4.2.3 of ETSI GS NFV-SOL 013.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided authorization, or error details 
+            if the corresponding HTTP request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+        Link:
+          description: >
+            Reference to other resources. Link HTTP header in this response shall follow the provisions 
+            in clause 5.4.2.3 of ETSI GS NFV-SOL 013.
+          schema:
+            type: string
+            minimum: 0
+            maximum: 1
+      content:
+        application/json:
+          schema: 
+            type: array
+            items:
+              $ref: "#/components/schemas/PolicySubscription"
+
+    Subscriptions.get.400:
+      description: >
+        400 Bad Request
+
+        Shall be returned upon the following error: Invalid attribute-based filtering expression.
+        The response body shall contain a ProblemDetails structure, in which the "detail" attribute 
+        should convey more information about the error.
+
+        Shall be returned upon the following error: Response too big. 
+        If the API producer supports alternative 1 (error) according to clause 5.4.2.1 of ETSI GS NFV-SOL 013
+        for this resource, this error response shall follow the provisions in clause 5.4.2.2 of 
+        ETSI GS NFV-SOL 013.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided authorization, or error details 
+            if the corresponding HTTP request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+        
+    IndividualSubscription.get.200:
+      description: >
+        200 OK
+
+        Shall be returned when information about an individual subscription has been read successfully.
+        The response body shall contain a representation of the subscription resource, as defined in 
+        clause 5.6.2.6.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided authorization, or error details 
+            if the corresponding HTTP request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema: 
+            $ref: "#/components/schemas/PolicySubscription"
+        
+    IndividualSubscription.delete.204:
+      description: >
+        204 No Content
+
+        Shall be returned when the "individual subscription" resource has been deleted successfully.
+        The response body shall be empty.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided authorization, or error details 
+            if the corresponding HTTP request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string        
+
   requestBodies:
     PolicyCreationRequest:
       description: >
@@ -947,7 +1347,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/PolicyModifications"
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/PolicyModifications"
 
     PolicyVersionTransferRequest:
       description: >
@@ -958,3 +1358,11 @@ components:
           schema:
             type: object
             additionalProperties: true
+
+    PolicySubscriptionCreateRequest:
+      description: >
+        Details of the subscription to be created.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/PolicySubscriptionRequest"
