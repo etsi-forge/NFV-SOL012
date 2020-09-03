@@ -8,12 +8,12 @@ info:
     IMPORTANT: Please note that this file might be not aligned to the current version of the ETSI Group Specification
     it refers to. In case of discrepancies the published ETSI Group Specification takes precedence.
 
-    Please report bugs to https://forge.etsi.org/bugzilla/buglist.cgi?component=Nfv-Openapis&list_id=61&product=NFV&resolution=
+    Please report bugs to https://forge.etsi.org/rep/nfv/SOL012/issues
   license:
     name: ETSI Forge copyright notice
     url: https://forge.etsi.org/etsi-forge-copyright-notice.txt
 externalDocs:
-  description: ETSI GS NFV-SOL 012 V3.3.1
+  description: ETSI GS NFV-SOL 012 v3.3.1
   url: https://docbox.etsi.org/ISG/NFV/Open/Drafts/SOL012ed331_Protocol_Spec_for_Policy_Mgmt_Intface/NFV-SOL012ed331v010.zip
 
 security:
