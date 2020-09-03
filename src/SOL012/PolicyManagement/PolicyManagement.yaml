@@ -5,8 +5,10 @@ info:
   description: >
     SOL012 - Policy Management Interface
 
+
     IMPORTANT: Please note that this file might be not aligned to the current version of the ETSI Group Specification
     it refers to. In case of discrepancies the published ETSI Group Specification takes precedence.
+
 
     Please report bugs to https://forge.etsi.org/rep/nfv/SOL012/issues
   license:
