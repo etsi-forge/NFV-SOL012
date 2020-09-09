@@ -575,9 +575,18 @@ components:
           type: string
         pfId:
           description: >
-            Identifier of the Policy Function (PF) which enforces the policy. The PF is either a VNFM or a VIM.
-            Cardinality of zero indicates that the PF is the API producer itself.
+            Identifier of the Policy Function (PF) which enforces the policy. Shall be present when the
+            PF is not the API producer and shall be absent otherwise.
+            For example, the PF can be a VNFM or VIM when the API producer is an NFVO.
           $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        associations:
+          description: >
+            Initial value of the “associations” attribute in the “Policy” data structure which represents the policy.
+            How the PF determines the scope of applicability of the policy when this attribute
+            is absent is outside the scope of the present document.
+          type: array
+          items:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
       required:
         - designer
         - name
@@ -601,8 +610,9 @@ components:
           type: string
         pfId:
           description: >
-            Identifier of the Policy Function (PF) which enforces the policy. The PF is either a VNFM or a VIM.
-            Cardinality of zero indicates that the PF is the API producer itself.
+            Identifier of the Policy Function (PF) which enforces the policy. Shall be present when the PF is not
+            the API producer and shall be absent otherwise.
+            For example, the PF can be a VNFM or VIM when the API producer is an NFVO.
           $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
         versions:
           description: >
@@ -614,16 +624,18 @@ components:
           description: >
             Selected version of the policy. Shall be present if one or more versions of the policy have been transferred.
           $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
-        policy:
-          description: >
-            Content of the policy.
         activationStatus:
           description: >
             Status of the policy on whether it is activated or deactivated.
           $ref: "../components/SOL012_schemas.yaml#/components/schemas/ActivationStatus"
         associations:
           description: >
-            Identifiers of the entities that the API producer manages and to which the policy associates to.
+            Identifiers of the entities that the PF manages and to which the policy associates to.
+            The associations refer to identifiers of entities that the PF manages.
+            E.g., if the PF is a VNFM, the policy can associate to VNF instances; if the PF is NFVO, the policy can
+            associate to an NS instances.
+            How the PF determines the scope of applicability of the policy when this attribute is absent is
+            outside the scope of the present document.
           type: array
           items:
             $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"

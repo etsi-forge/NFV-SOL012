@@ -305,13 +305,32 @@ components:
           description: >
             New version of the policy to be selected.
           $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
-        associations:
+        addAssociations:
           description: >
-            Modified associations of the policy, includes the identifiers of the entities that the API
-            producer manages and to which the policy associates to.
+            Identifiers of entities to be added to the “associations” attribute in the “Policy”
+            data structure which represents the policy.
+            The API producer shall ignore the identifiers that already exist in the "associations"
+            attribute in the “Policy” data structure.
           type: array
           items:
             $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        removeAssociations:
+          description: >
+            Identifiers of entities to be removed from the “associations” attribute in the “Policy” data structure
+            which represents the policy.
+            The API producer shall ignore the identifiers that do not exist in the "associations"
+            attribute in the “Policy” data structure
+          type: array
+          items:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        removeAllAssociations:
+          description: >
+            Shall be set to TRUE if the policy is no longer associated to any specific entities managed by the PF.ù
+            If "removeAllAssociations" is set to TRUE, neither "addAssociations" nor “removeAssociations” attributes
+            shall be present.
+            Once all associations have been removed, how the PF determines the scope of applicability of
+            the policy is outside the scope of the present document.
+          type: boolean
 
     PolicyOperationType:
       description: >
