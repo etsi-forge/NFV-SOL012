@@ -577,6 +577,8 @@ components:
           description: >
             Identifier of the Policy Function (PF) which enforces the policy. Shall be present when the
             PF is not the API producer and shall be absent otherwise.
+            Shall be absent when the API producer is NFVO-N.
+            More information concerning the PF can be found in ETSI GR NFV-IFA 023 [i.2].
             For example, the PF can be a VNFM or VIM when the API producer is an NFVO.
           $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
         associations:
@@ -587,7 +589,6 @@ components:
             the policy can associate to VNF instances; if the PF is NFVO, the policy can associate to an NS instances.
             How the PF determines the scope of applicability of the policy when this attribute is absent is
             outside the scope of the present document.
-
           type: array
           items:
             $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
@@ -616,6 +617,8 @@ components:
           description: >
             Identifier of the Policy Function (PF) which enforces the policy. Shall be present when the PF is not
             the API producer and shall be absent otherwise.
+            Shall be absent when the API producer is NFVO-N.
+            More information concerning the PF can be found in ETSI GR NFV-IFA 023 [i.2].
             For example, the PF can be a VNFM or VIM when the API producer is an NFVO.
           $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
         versions:
