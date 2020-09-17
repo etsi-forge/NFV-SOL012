@@ -291,6 +291,15 @@ components:
         - ACTIVATED
         - DEACTIVATED
 
+    TransferStatus:
+      description: >
+        The enumeration TransferStatus shall comply with the provisions defined in table 5.6.4.4-1.
+        It indicates the transfer status of a policy
+      type: string
+      enum:
+        - CREATED
+        - TRANSFERRED
+
     PolicyModifications:
       description: >
         This type represents the parameters for modifying a policy. It shall comply with the provisions

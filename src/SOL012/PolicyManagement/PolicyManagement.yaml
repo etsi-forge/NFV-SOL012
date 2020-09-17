@@ -628,6 +628,10 @@ components:
           description: >
             Status of the policy on whether it is activated or deactivated.
           $ref: "../components/SOL012_schemas.yaml#/components/schemas/ActivationStatus"
+        transferStatus:
+          description: >
+            Status of the policy on whether the content of the policy has been transferred.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/TransferStatus"
         associations:
           description: >
             Identifiers of the entities that the PF manages and to which the policy associates to.
@@ -666,6 +670,7 @@ components:
         - name
         - policy
         - activationStatus
+        - transferStatus
         - _links
 
     PolicySubscriptionRequest:
@@ -917,10 +922,13 @@ components:
 
         Shall be returned upon the following error: The operation cannot be executed currently, due to a conflict
         with the state of the resource.
-        Typically, this is due to the fact that no version of the policy has been transferred; that activating a
-        policy in ACTIVATED state; that deactivating a policy in DEACTIVATED state.
-        The response body shall contain a ProblemDetails structure, in which the "detail" attribute shall convey
-        more information about the error.
+        Typical reasons are attempts to:
+        •	modify a policy in CREATED state;
+        •	activate a policy in ACTIVATED state;
+        •	deactivate a policy in DEACTIVATED state.
+        The response body shall contain a ProblemDetails structure, in which the "detail" attribute shall
+        convey more information about the error.
+
       headers:
         WWW-Authenticate:
           description: >
@@ -1024,8 +1032,8 @@ components:
         target resource or is not willing to disclose that one exists.
         The general cause for this error and its handling is specified in clause 6.4 of ETSI GS NFV-SOL 013 [6],
         including rules for the presence of the response body.
-        Specifically in case of this resource, the response code 404 shall also be returned if no version of the
-        policy has been transferred.
+        Specifically in case of this resource, the response code 404 shall also be returned if the policy is in
+        CREATED state.
         In this case, the response body shall be present, and shall contain a ProblemDetails structure, in which
         the "detail" attribute shall convey more information about the error.
       headers:
