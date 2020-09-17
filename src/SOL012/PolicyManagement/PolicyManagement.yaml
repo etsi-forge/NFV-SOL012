@@ -582,8 +582,12 @@ components:
         associations:
           description: >
             Initial value of the “associations” attribute in the “Policy” data structure which represents the policy.
-            How the PF determines the scope of applicability of the policy when this attribute
-            is absent is outside the scope of the present document.
+            Shall be absent when the association feature is not applicable for the PF.
+            The associations refer to identifiers of entities that the PF manages. E.g., if the PF is a VNFM,
+            the policy can associate to VNF instances; if the PF is NFVO, the policy can associate to an NS instances.
+            How the PF determines the scope of applicability of the policy when this attribute is absent is
+            outside the scope of the present document.
+
           type: array
           items:
             $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
@@ -635,6 +639,7 @@ components:
         associations:
           description: >
             Identifiers of the entities that the PF manages and to which the policy associates to.
+            Shall be absent when the association feature is not applicable for the PF.
             The associations refer to identifiers of entities that the PF manages.
             E.g., if the PF is a VNFM, the policy can associate to VNF instances; if the PF is NFVO, the policy can
             associate to an NS instances.
@@ -668,7 +673,6 @@ components:
         - id
         - designer
         - name
-        - policy
         - activationStatus
         - transferStatus
         - _links
@@ -1091,7 +1095,6 @@ components:
 
         Shall be returned when the policy content has been transferred successfully.
         The response body shall be empty.
-        Editor's note: It is FFS whether an empty payload is allowed for 201 Created response
       headers:
         WWW-Authenticate:
           description: >

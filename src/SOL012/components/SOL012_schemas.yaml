@@ -320,6 +320,7 @@ components:
             data structure which represents the policy.
             The API producer shall ignore the identifiers that already exist in the "associations"
             attribute in the “Policy” data structure.
+            Shall be absent when the association feature is not applicable for the PF.
           type: array
           items:
             $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
@@ -328,13 +329,15 @@ components:
             Identifiers of entities to be removed from the “associations” attribute in the “Policy” data structure
             which represents the policy.
             The API producer shall ignore the identifiers that do not exist in the "associations"
-            attribute in the “Policy” data structure
+            attribute in the “Policy” data structure.
+            Shall be absent when the association feature is not applicable for the PF.
           type: array
           items:
             $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
         removeAllAssociations:
           description: >
-            Shall be set to TRUE if the policy is no longer associated to any specific entities managed by the PF.ù
+            Shall be set to TRUE if the policy is no longer associated to any specific entities managed by the PF.
+            Shall be absent when the association feature is not applicable for the PF.
             If "removeAllAssociations" is set to TRUE, neither "addAssociations" nor “removeAssociations” attributes
             shall be present.
             Once all associations have been removed, how the PF determines the scope of applicability of
