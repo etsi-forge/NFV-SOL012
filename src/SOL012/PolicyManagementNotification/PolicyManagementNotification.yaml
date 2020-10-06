@@ -26,7 +26,7 @@ servers:
   - url: https://127.0.0.1/callback/v1
 
 paths:
-  /URI_is_provided_by_the_API_consumer_when_creating_the_subscription_PolicyManagementNotification:
+  /URI_is_provided_by_the_API_consumer_when_creating_the_subscription_PolicyChangeNotification:
     description: >-
       This resource represents a notification endpoint for policy management.
       The API producer can use this resource to send notifications related to policy management events to 
@@ -47,10 +47,10 @@ paths:
       parameters:
         - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
       requestBody:
-        $ref: "#/components/requestBodies/NotificationCreateRequest"
+        $ref: "#/components/requestBodies/PolicyChangeNotification"
       responses:
         "204":
-          $ref: '#/components/responses/Notification.post.204'
+          $ref: '#/components/responses/PolicyChangeNotification.Post.204'
         "400":
           $ref: ../components/SOL012_resp.yaml#/components/responses/400
         "401":
@@ -65,6 +65,7 @@ paths:
           $ref: ../components/SOL012_resp.yaml#/components/responses/500
         "503":
           $ref: ../components/SOL012_resp.yaml#/components/responses/503
+
     get:
       description: >-
         The GET method allows the API producer to test the notification endpoint that is provided by the 
@@ -73,7 +74,71 @@ paths:
         URI query parameters, request and response data structures, and response codes.
       responses:
         "204":
-          $ref: '#/components/responses/Notification.get.204'
+          $ref: '#/components/responses/PolicyChangeNotification.Get.204'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+
+  /URI_is_provided_by_the_API_consumer_when_creating_the_subscription_PolicyConflictNotification:
+    description: >-
+      This resource represents a notification endpoint for policy management.
+      The API producer can use this resource to send notifications related to policy management events to 
+      a subscribed API consumer, which has provided the URI of this resource during the subscription process.
+    parameters:
+      - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
+      - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+      - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+    post:
+      description: >-
+        The POST method delivers a notification regarding a policy management event from the API producer 
+        to an API consumer. The API consumer shall have previously created an "Individual subscription" 
+        resource with a matching filter.
+        This method shall follow the provisions specified in the tables 5.5.9.3.1-1 and 5.5.9.3.1-2 for 
+        URI query parameters, request and response data structures, and response codes.
+        Each notification request body shall include exactly one of the alternatives defined 
+        in table 5.5.9.3.1-2.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
+      requestBody:
+        $ref: "#/components/requestBodies/PolicyConflictNotification"
+      responses:
+        "204":
+          $ref: '#/components/responses/PolicyConflictNotification.Post.204'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+
+    get:
+      description: >-
+        The GET method allows the API producer to test the notification endpoint that is provided by the 
+        API consumer, e.g. during subscription.
+        This method shall follow the provisions specified in the tables 5.5.9.3.2-1 and 5.5.9.3.2-2 for 
+        URI query parameters, request and response data structures, and response codes.
+      responses:
+        "204":
+          $ref: '#/components/responses/PolicyConflictNotification.Get.204'
         "400":
           $ref: ../components/SOL012_resp.yaml#/components/responses/400
         "401":
@@ -251,7 +316,7 @@ components:
         - _links
       
   responses:
-    Notification.post.204:
+    PolicyChangeNotification.Post.204:
       description: >
         204 No Content
 
@@ -269,7 +334,44 @@ components:
           schema:
             type: string
         
-    Notification.get.204:
+    PolicyChangeNotification.Get.204:
+      description: >
+        204 No Content
+
+        Shall be returned to indicate that the notification endpoint has been tested successfully.
+        The response body shall be empty.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided authorization, or error details 
+            if the corresponding HTTP request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+
+    PolicyConflictNotification.Post.204:
+      description: >
+        204 No Content
+
+        Shall be returned when the notification has been delivered successfully.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided authorization, or error details 
+            if the corresponding HTTP request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+        
+    PolicyConflictNotification.Get.204:
       description: >
         204 No Content
 
@@ -289,14 +391,20 @@ components:
             type: string
 
   requestBodies:
-    NotificationCreateRequest:
-      description: >
-        This type represents request parameters for creating a notification.
-        Each notification request body shall include exactly one of the alternatives defined in table 5.5.9.3.1-2.
+    PolicyChangeNotification:
+      description: |
+        A notification about policy changes.
       content:
         application/json:
           schema:
-            oneOf:
-              - $ref: "#/components/schemas/PolicyChangeNotification"
-              - $ref: "#/components/schemas/PolicyConflictNotification"
+            $ref: "#/components/schemas/PolicyChangeNotification"
+      required: true
+    
+    PolicyConflictNotification:
+      description: |
+        A notification about a detected policy conflict.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/PolicyConflictNotification"
       required: true
