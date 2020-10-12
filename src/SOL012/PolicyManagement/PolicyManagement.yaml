@@ -159,7 +159,7 @@ paths:
         - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
       requestBody:
-        $ref: "#/components/requestBodies/ModifyPolicyRequest"
+        $ref: "#/components/requestBodies/PolicyModifications"
       responses:
         "200":
           $ref: '#/components/responses/PolicyModifications.Patch.200'
@@ -310,8 +310,6 @@ paths:
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
-      requestBody:
-        $ref: '#/components/requestBodies/PolicyVersionTransferRequest'
       responses:
         "201":
           $ref: '#/components/responses/PolicyVersionTransfer.Put.201'
@@ -390,7 +388,7 @@ paths:
         - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
       requestBody:
-        $ref: '#/components/requestBodies/PolicySubscriptionCreateRequest'
+        $ref: '#/components/requestBodies/PolicySubscriptionRequest'
       responses:
         "201":
           $ref: '#/components/responses/Subscriptions.Post.201'
@@ -1375,7 +1373,7 @@ components:
            $ref: "#/components/schemas/CreatePolicyRequest"
       required: true
 
-    ModifyPolicyRequest:
+    PolicyModifications:
       description: >
         The parameter for the policy modifications, as defined in clause 5.6.2.4.
       content:
@@ -1383,17 +1381,7 @@ components:
           schema:
             $ref: "../components/SOL012_schemas.yaml#/components/schemas/PolicyModifications"
 
-    PolicyVersionTransferRequest:
-      description: >
-        The payload body contains a copy of the policy content.
-        The "Content-Type" HTTP header shall be set according to the type of the policy content.
-      content:
-        application/*:
-          schema:
-            type: object
-            additionalProperties: true
-
-    PolicySubscriptionCreateRequest:
+    PolicySubscriptionRequest:
       description: >
         Details of the subscription to be created.
       content:
