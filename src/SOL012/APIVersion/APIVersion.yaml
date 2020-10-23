@@ -24,7 +24,7 @@ info:
 
 externalDocs:
   description: ETSI GS NFV-SOL 012 v3.4.1
-  url: https://docbox.etsi.org/ISG/NFV/Open/Drafts/SOL012ed331_Protocol_Spec_for_Policy_Mgmt_Intface/NFV-SOL012ed341v011.zip
+  url: https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/012/03.04.01_60/gs_nfv-sol012v030401p.pdf
 
 paths:
   /nfvpolicy/api_versions:
