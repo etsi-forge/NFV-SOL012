@@ -1,0 +1,31 @@
+openapi: 3.0.2
+
+info:
+  version: 1.0.0-impl:etsi.org:ETSI_NFV_OpenAPI:1
+
+  title: SOL012 - API version interface
+
+  description: >
+    SOL012 - API version Interface
+
+    IMPORTANT: Please note that this file might
+    be not aligned to the current version of the ETSI Group Specification it
+    refers to and has not been approved by the ETSI NFV ISG. In case of
+    discrepancies the published ETSI Group Specification takes precedence.
+
+    Please report bugs to https://forge.etsi.org/rep/nfv/SOL012/issues
+
+  license:
+    name: ETSI Forge copyright notice
+    url: https://forge.etsi.org/etsi-forge-copyright-notice.txt
+
+  contact:
+    name: NFV-SOL WG
+
+externalDocs:
+  description: ETSI GS NFV-SOL 012 v3.4.1
+  url: https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/012/03.04.01_60/gs_nfv-sol012v030401p.pdf
+
+paths:
+  /nfvpolicy/api_versions:
+    $ref: '../endpoints/SOL012_endpoints.yaml#/endpoints/api_versions'

@@ -1,0 +1,410 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0-impl:etsi.org:ETSI_NFV_OpenAPI:1
+  title: SOL012 - Policy Management Notification Interface
+  description: >
+    SOL012 - Policy Management Notification Interface
+
+
+    IMPORTANT: Please note that this file might be not aligned to the current version of the ETSI Group Specification
+    it refers to. In case of discrepancies the published ETSI Group Specification takes precedence.
+
+
+    Please report bugs to https://forge.etsi.org/rep/nfv/SOL012/issues
+  license:
+    name: ETSI Forge copyright notice
+    url: https://forge.etsi.org/etsi-forge-copyright-notice.txt
+externalDocs:
+  description: ETSI GS NFV-SOL 012 v3.4.1
+  url: https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/012/03.04.01_60/gs_nfv-sol012v030401p.pdf
+
+security:
+  - OauthSecurity:
+      - all
+servers:
+  - url: http://127.0.0.1/callback/v1
+  - url: https://127.0.0.1/callback/v1
+
+paths:
+  /URI_is_provided_by_the_API_consumer_when_creating_the_subscription_PolicyChangeNotification:
+    description: >-
+      This resource represents a notification endpoint for policy management.
+      The API producer can use this resource to send notifications related to policy management events to 
+      a subscribed API consumer, which has provided the URI of this resource during the subscription process.
+    parameters:
+      - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
+      - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+      - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+    post:
+      description: >-
+        The POST method delivers a notification regarding a policy management event from the API producer 
+        to an API consumer. The API consumer shall have previously created an "Individual subscription" 
+        resource with a matching filter.
+        This method shall follow the provisions specified in the tables 5.5.9.3.1-1 and 5.5.9.3.1-2 for 
+        URI query parameters, request and response data structures, and response codes.
+        Each notification request body shall include exactly one of the alternatives defined 
+        in table 5.5.9.3.1-2.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
+      requestBody:
+        $ref: "#/components/requestBodies/PolicyChangeNotification"
+      responses:
+        "204":
+          $ref: '#/components/responses/PolicyChangeNotification.Post.204'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+
+    get:
+      description: >-
+        The GET method allows the API producer to test the notification endpoint that is provided by the 
+        API consumer, e.g. during subscription.
+        This method shall follow the provisions specified in the tables 5.5.9.3.2-1 and 5.5.9.3.2-2 for 
+        URI query parameters, request and response data structures, and response codes.
+      responses:
+        "204":
+          $ref: '#/components/responses/PolicyChangeNotification.Get.204'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+
+  /URI_is_provided_by_the_API_consumer_when_creating_the_subscription_PolicyConflictNotification:
+    description: >-
+      This resource represents a notification endpoint for policy management.
+      The API producer can use this resource to send notifications related to policy management events to 
+      a subscribed API consumer, which has provided the URI of this resource during the subscription process.
+    parameters:
+      - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
+      - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
+      - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
+    post:
+      description: >-
+        The POST method delivers a notification regarding a policy management event from the API producer 
+        to an API consumer. The API consumer shall have previously created an "Individual subscription" 
+        resource with a matching filter.
+        This method shall follow the provisions specified in the tables 5.5.9.3.1-1 and 5.5.9.3.1-2 for 
+        URI query parameters, request and response data structures, and response codes.
+        Each notification request body shall include exactly one of the alternatives defined 
+        in table 5.5.9.3.1-2.
+      parameters:
+        - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
+      requestBody:
+        $ref: "#/components/requestBodies/PolicyConflictNotification"
+      responses:
+        "204":
+          $ref: '#/components/responses/PolicyConflictNotification.Post.204'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+
+    get:
+      description: >-
+        The GET method allows the API producer to test the notification endpoint that is provided by the 
+        API consumer, e.g. during subscription.
+        This method shall follow the provisions specified in the tables 5.5.9.3.2-1 and 5.5.9.3.2-2 for 
+        URI query parameters, request and response data structures, and response codes.
+      responses:
+        "204":
+          $ref: '#/components/responses/PolicyConflictNotification.Get.204'
+        "400":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+        "401":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+        "403":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+        "405":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+        "406":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+        "500":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+        "503":
+          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+
+components:
+  schemas:
+    PolicyChangeNotification:
+      description: >
+        This type represents a notification about policy change. It shall comply with the provisions 
+        defined in table 5.6.2.7-1.
+        This notification shall be triggered by the API producer when a policy has been changed as 
+        the result of an operation of creating, transferring, deleting or modifying a policy.
+      type: object
+      properties:
+        id:
+          description: >
+            Identifier of this notification. If a notification is sent multiple times due to multiple 
+            subscriptions, the "id" attribute of all these notifications shall have the same value.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        notificationType:
+          description: >
+            Discriminator for the different notification types. Shall be set to "PolicyChangeNotification" 
+            for this notification type.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/String"
+        subscriptionId:
+          description: >
+            Identifier of the subscription that this notification relates to.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        timeStamp:
+          description: >
+            Date and time of the generation of the notification.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/DateTime"
+        policyId:
+          description: >
+            Identifier of the policy.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        affectedVersion:
+          description: >
+            Affected version of the policy. 
+            The value is the version identifier in the URI when a particular version of the policy 
+            is transferred or deleted, or the selected version of the policy when the policy is 
+            activated/deactivated/modified.
+            Shall be present when a particular version of the policy is impacted by the policy 
+            management operation.
+            Shall be absent otherwise.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
+        previousSelectedVersion:
+          description: >
+            The previous selected version of the policy.
+            Shall be present when another version of the policy has been selected.
+            Shall be absent otherwise.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
+        policyModifications:
+          description: >
+            Information about the modifications of the policy. Shall be present when the changeType 
+            equals to "MODIFY_POLICY". Shall be absent otherwise.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/PolicyModifications"
+        changeType:
+          description: >
+            Policy management operation that cause the change of the policy.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/PolicyOperationType"
+        _links:
+          description: >
+            Links to resources related to this notification.
+          type: object
+          properties:
+            subscription:
+              description: >
+                Link to the related subscription.
+              $ref: "../components/SOL012_schemas.yaml#/components/schemas/NotificationLink"
+            objectInstance:
+              description: >
+                Link to the resource representing the policies to which the notified change applies. 
+                Shall be present if the policy is accessible as a resource.
+              $ref: "../components/SOL012_schemas.yaml#/components/schemas/NotificationLink"
+          required:
+            - subscription
+      required:
+        - id
+        - notificationType
+        - subscriptionId
+        - timeStamp
+        - policyId
+        - changeType
+        - _links
+
+    PolicyConflictNotification:
+      description: >
+        This type represents a notification about policy conflict. It shall comply with the provisions 
+        defined in table 5.6.2.8-1.
+        This notification shall be triggered by the API producer when a policy conflict is detected, 
+        and any of the policies specified in an associated notification subscription is impacted 
+        by the conflict.
+      type: object
+      properties:
+        id:
+          description: >
+            Identifier of this notification. If a notification is sent multiple times due to multiple 
+            subscriptions, the "id" attribute of all these notifications shall have the same value.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        notificationType:
+          description: >
+            Discriminator for the different notification types. Shall be set to "PolicyConflictNotification" 
+            for this notification type.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/String"
+        subscriptionId:
+          description: >
+            Identifier of the subscription that this notification relates to.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+        timeStamp:
+          description: >
+            Date and time of the generation of the notification.
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/DateTime"
+        policyIds:
+          description: >
+            Identifiers of the conflicting policies. 
+            The policy identifier and the corresponding selected version are mapped by the order 
+            in the array.
+          type: array
+          items:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+          minItems: 2
+        selectedVersions:
+          description: >
+            Selected versions of the conflicting policies. 
+            The policy identifier and the corresponding selected version are mapped by the order 
+            in the array.
+          type: array
+          items:
+            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
+          minItems: 2
+        conflictDescription:
+          description: >
+            Description of the detected policy conflicts, e.g. conflicting events, conditions 
+            or actions among the policies
+          $ref: "../components/SOL012_schemas.yaml#/components/schemas/String"
+        _links:
+          description: >
+            Links to resources related to this notification.
+          type: object
+          properties:
+            subscription:
+              description: >
+                Link to the related subscription.
+              $ref: "../components/SOL012_schemas.yaml#/components/schemas/NotificationLink"
+            objectInstances:
+              description: >
+                Link to the resources representing the policies to which the notified conflict applies.
+              type: array
+              items:
+                $ref: "../components/SOL012_schemas.yaml#/components/schemas/NotificationLink"
+              minItems: 2
+          required:
+            - subscription
+            - objectInstances
+      required:
+        - id
+        - notificationType
+        - subscriptionId
+        - timeStamp
+        - policyIds
+        - selectedVersions
+        - conflictDescription
+        - _links
+      
+  responses:
+    PolicyChangeNotification.Post.204:
+      description: >
+        204 No Content
+
+        Shall be returned when the notification has been delivered successfully.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided authorization, or error details 
+            if the corresponding HTTP request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+        
+    PolicyChangeNotification.Get.204:
+      description: >
+        204 No Content
+
+        Shall be returned to indicate that the notification endpoint has been tested successfully.
+        The response body shall be empty.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided authorization, or error details 
+            if the corresponding HTTP request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+
+    PolicyConflictNotification.Post.204:
+      description: >
+        204 No Content
+
+        Shall be returned when the notification has been delivered successfully.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided authorization, or error details 
+            if the corresponding HTTP request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+        
+    PolicyConflictNotification.Get.204:
+      description: >
+        204 No Content
+
+        Shall be returned to indicate that the notification endpoint has been tested successfully.
+        The response body shall be empty.
+      headers:
+        WWW-Authenticate:
+          description: >
+            Challenge if the corresponding HTTP request has not provided authorization, or error details 
+            if the corresponding HTTP request has provided an invalid authorization token.
+          schema:
+            type: string
+        Version:
+          description: >
+            Version of the API used in the response.
+          schema:
+            type: string
+
+  requestBodies:
+    PolicyChangeNotification:
+      description: |
+        A notification about policy changes.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/PolicyChangeNotification"
+      required: true
+    
+    PolicyConflictNotification:
+      description: |
+        A notification about a detected policy conflict.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/PolicyConflictNotification"
+      required: true
