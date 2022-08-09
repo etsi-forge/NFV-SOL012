@@ -47,7 +47,7 @@ paths:
         - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
       requestBody:
-        $ref: "definitions/PolicyManagement_def.yaml#/definitions/requestBodies/CreatePolicyRequest"
+        $ref: "#/components/requestBodies/CreatePolicyRequest"
       responses:
         "201":
           $ref: '#/components/responses/Policy.Post.201'
@@ -78,8 +78,8 @@ paths:
         This method shall follow the provisions specified in the tables 5.5.3.3.2-1 and 5.5.3.3.2-2
         for URI query parameters, request and response data structures, and response codes.
       parameters:
-        - $ref: "definitions/PolicyManagement_def.yaml#/definitions/parameters/filter.Policies"
-        - $ref: "definitions/PolicyManagement_def.yaml#/definitions/parameters/nextpage_opaque_marker.Policies"
+        - $ref: "#/components/parameters/filter.Policies"
+        - $ref: "#/components/parameters/nextpage_opaque_marker.Policies"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
@@ -159,7 +159,7 @@ paths:
         - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
       requestBody:
-        $ref: "definitions/PolicyManagement_def.yaml#/definitions/requestBodies/PolicyModifications"
+        $ref: "#/components/requestBodies/PolicyModifications"
       responses:
         "200":
           $ref: '#/components/responses/PolicyModifications.Patch.200'
@@ -425,8 +425,8 @@ paths:
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
-        - $ref: "definitions/PolicyManagement_def.yaml#/definitions/parameters/filter.Subscriptions"
-        - $ref: "definitions/PolicyManagement_def.yaml#/definitions/parameters/nextpage_opaque_marker.Subscriptions"
+        - $ref: "#/components/parameters/filter.Subscriptions"
+        - $ref: "#/components/parameters/nextpage_opaque_marker.Subscriptions"
       responses:
         "200":
           $ref: '#/components/responses/Subscriptions.Get.200'
@@ -538,7 +538,7 @@ components:
       in: path
       required: true
       schema:
-        $ref: '../components/SOL012_schemas.yaml#/components/schemas/Identifier'
+        $ref: '../definitions/SOL012_def.yaml#/definitions/schemas/Identifier'
 
     version:
       name: version
@@ -560,7 +560,7 @@ components:
       in: path
       required: true
       schema:
-        $ref: '../components/SOL012_schemas.yaml#/components/schemas/Identifier'
+        $ref: '../definitions/SOL012_def.yaml#/definitions/schemas/Identifier'
 
     filter.Policies:
       name: filter
