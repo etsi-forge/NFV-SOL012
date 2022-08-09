@@ -78,8 +78,8 @@ paths:
         This method shall follow the provisions specified in the tables 5.5.3.3.2-1 and 5.5.3.3.2-2
         for URI query parameters, request and response data structures, and response codes.
       parameters:
-        - $ref: "../components/SOL012_params.yaml#/components/parameters/filter"
-        - $ref: "../components/SOL012_params.yaml#/components/parameters/nextpage_opaque_marker"
+        - $ref: "#/components/parameters/filter.Policies"
+        - $ref: "#/components/parameters/nextpage_opaque_marker.Policies"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
@@ -425,8 +425,8 @@ paths:
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
-        - $ref: "../components/SOL012_params.yaml#/components/parameters/filter"
-        - $ref: "../components/SOL012_params.yaml#/components/parameters/nextpage_opaque_marker"
+        - $ref: "#/components/parameters/filter.Subscriptions"
+        - $ref: "#/components/parameters/nextpage_opaque_marker.Subscriptions"
       responses:
         "200":
           $ref: '#/components/responses/Subscriptions.Get.200'
@@ -561,6 +561,61 @@ components:
       required: true
       schema:
         $ref: '../components/SOL012_schemas.yaml#/components/schemas/Identifier'
+
+    filter.Policies:
+      name: filter
+      description: >
+        Attribute-based filtering expression according to clause 5.2 of ETSI
+        GS NFV-SOL 013 [7].
+        The API producer shall support receiving this parameter as part of
+        the URI query string. The API consumer may supply this
+        parameter.
+        All attribute names that appear in the Policy and in data types
+        referenced from it shall be supported by the API producer in the
+        filter expression.
+      in: query
+      required: false
+      schema:
+        type: string
+
+    nextpage_opaque_marker.Policies:
+      name: nextpage_opaque_marker
+      description: >
+        Marker to obtain the next page of a paged response. Shall be
+        supported by the API producer if it supports alternative 2 (paging)
+        according to clause 5.4.2.1 of ETSI GS NFV-SOL 013 [7] for this
+        resource.
+      in: query
+      required: false
+      schema:
+        type: string
+
+    filter.Subscriptions:
+      name: filter
+      description: >
+        Attribute-based filtering expression according to clause 5.2 of ETSI
+        GS NFV-SOL 013 [7].
+        The API producer shall support receiving this parameter as part of the
+        URI query string. The API consumer may supply this parameter.
+        All attribute names that appear in the PolicySubscription and in data types
+        referenced from it shall be supported by the API producer in the filter
+        expression.
+      in: query
+      required: false
+      schema:
+        type: string
+
+    nextpage_opaque_marker.Subscriptions:
+      name: nextpage_opaque_marker
+      description: >
+        Marker to obtain the next page of a paged response. Shall be supported
+        by the API producer if the API producer supports alternative 2 (paging)
+        according to clause 5.4.2.1 of ETSI GS NFV-SOL 013 [7] for this
+        resource.
+      in: query
+      required: false
+      schema:
+        type: string
 
   schemas:
     CreatePolicyRequest:
