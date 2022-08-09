@@ -1,4 +1,4 @@
-components:
+definitions:
   schemas:
     Link:
       description: >
@@ -11,7 +11,7 @@ components:
           description: >
             URI of another resource referenced from a resource.
             Shall be an absolute URI (i.e. a UTI that contains {apiRoot}).
-          $ref: "#/components/schemas/Uri"
+          $ref: "#/definitions/schemas/Uri"
 
     NotificationLink:
       description: >
@@ -27,7 +27,7 @@ components:
             {apiRoot}), however, may be a relative URI (i.e. a URI
             where the {apiRoot} part is omitted) if the {apiRoot}
             information is not available.
-          $ref: "#/components/schemas/Uri"
+          $ref: "#/definitions/schemas/Uri"
     
     IpAddress:
       description: >
@@ -92,7 +92,7 @@ components:
                   This attribute may be included if the value of the
                   isDeprecated attribute is set to true and shall be
                   absent otherwise.
-                $ref: "#/components/schemas/DateTime"
+                $ref: "#/definitions/schemas/DateTime"
 
     Identifier:
       description: >
@@ -222,7 +222,7 @@ components:
               description: >
                 The token endpoint from which the access token can be obtained.
                 Shall be present if it has not been provisioned out of band.
-              $ref: "#/components/schemas/Uri"
+              $ref: "#/definitions/schemas/Uri"
 
     ProblemDetails:
       description: >
@@ -309,11 +309,11 @@ components:
         activationStatus:
           description: >
             New activation status of the policy.
-          $ref: "#/components/schemas/ActivationStatus"
+          $ref: "#/definitions/schemas/ActivationStatus"
         selectedVersion:
           description: >
             New version of the policy to be selected.
-          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
+          $ref: "../definitions/SOL012_def.yaml#/definitions/schemas/Version"
         addAssociations:
           description: >
             Identifiers of entities to be added to the “associations” attribute in the “Policy”
@@ -323,7 +323,7 @@ components:
             Shall be absent when the association feature is not applicable for the PF.
           type: array
           items:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+            $ref: "../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
         removeAssociations:
           description: >
             Identifiers of entities to be removed from the “associations” attribute in the “Policy” data structure
@@ -333,7 +333,7 @@ components:
             Shall be absent when the association feature is not applicable for the PF.
           type: array
           items:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
+            $ref: "../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
         removeAllAssociations:
           description: >
             Shall be set to TRUE if the policy is no longer associated to any specific entities managed by the PF.
