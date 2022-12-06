@@ -1,0 +1,221 @@
+definitions:
+  schemas:
+    CreatePolicyRequest:
+      description: >
+        This type represents request parameters for creating a policy. It shall comply with the provisions defined
+        in table 5.6.2.2-1.
+      type: object
+      properties:
+        designer:
+          description: >
+            Human readable name of the designer of the policy.
+          type: string
+        name:
+          description: >
+            Human readable name of the policy.
+          type: string
+        pfId:
+          description: >
+            Identifier of the Policy Function (PF) which enforces the policy. Shall be present when the
+            PF is not the API producer and shall be absent otherwise.
+            Shall be absent when the API producer is NFVO-N.
+            More information concerning the PF can be found in ETSI GR NFV-IFA 023 [i.2].
+            For example, the PF can be a VNFM or VIM when the API producer is an NFVO.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+        associations:
+          description: >
+            Initial value of the “associations” attribute in the “Policy” data structure which represents the policy.
+            Shall be absent when the association feature is not applicable for the PF.
+            The associations refer to identifiers of entities that the PF manages. E.g., if the PF is a VNFM,
+            the policy can associate to VNF instances; if the PF is NFVO, the policy can associate to an NS instances.
+            How the PF determines the scope of applicability of the policy when this attribute is absent is
+            outside the scope of the present document.
+          type: array
+          items:
+            $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+      required:
+        - designer
+        - name
+
+    Policy:
+      description: >-
+        This type represents an individual policy. It shall comply with the provisions defined in table 5.6.2.3-1.
+      type: object
+      properties:
+        id:
+          description: >
+            Identifier of the policy.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+        designer:
+          description: >
+            Human readable name of the designer of the policy.
+          type: string
+        name:
+          description: >
+            Human readable name of the policy.
+          type: string
+        pfId:
+          description: >
+            Identifier of the Policy Function (PF) which enforces the policy. Shall be present when the PF is not
+            the API producer and shall be absent otherwise.
+            Shall be absent when the API producer is NFVO-N.
+            More information concerning the PF can be found in ETSI GR NFV-IFA 023 [i.2].
+            For example, the PF can be a VNFM or VIM when the API producer is an NFVO.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+        versions:
+          description: >
+            Versions of the policy. Shall be present if at least one version of the policy has been transferred.
+          type: array
+          items:
+            $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Version"
+        selectedVersion:
+          description: >
+            Selected version of the policy. Shall be present if one or more versions of the policy have been transferred.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Version"
+        activationStatus:
+          description: >
+            Status of the policy on whether it is activated or deactivated.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/ActivationStatus"
+        transferStatus:
+          description: >
+            Status of the policy on whether the content of the policy has been transferred.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/TransferStatus"
+        associations:
+          description: >
+            Identifiers of the entities that the PF manages and to which the policy associates to.
+            Shall be absent when the association feature is not applicable for the PF.
+            The associations refer to identifiers of entities that the PF manages.
+            E.g., if the PF is a VNFM, the policy can associate to VNF instances; if the PF is NFVO, the policy can
+            associate to an NS instances.
+            How the PF determines the scope of applicability of the policy when this attribute is absent is
+            outside the scope of the present document.
+          type: array
+          items:
+            $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+        _links:
+          description: >
+            Links for this resource
+          type: object
+          properties:
+            self:
+              description: >
+                URI of this resource
+              $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Link"
+            selected:
+              description: >
+                URI of the selected version of this policy, if exists.
+              $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Link"
+            versions:
+              description: >
+                URIs of all the transferred versions of this policy, if exists.
+              type: array
+              items:
+                $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Link"
+          required:
+            - self
+      required:
+        - id
+        - designer
+        - name
+        - activationStatus
+        - transferStatus
+        - _links
+
+    PolicySubscriptionRequest:
+      description: >
+        This type represents a subscription request related to notifications about policy changes
+        and policy conflicts. It shall comply with the provisions defined in table 5.6.2.5-1.
+      type: object
+      properties:
+        filter:
+          description: >
+            Filter settings for this subscription, to define the subset of all notifications this subscription relates to.
+            A particular notification is sent to the subscriber if the filter matches, or if there is no filter.
+          $ref: "#/definitions/schemas/PolicyNotificationsFilter"
+        callbackUri:
+          description: >
+            The URI of the endpoint to send the notification to.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Uri"
+        authentication:
+          description: >
+            Authentication parameters to configure the use of Authorization when sending notifications
+            corresponding to this subscription, as defined in clause 8.3.4 of ETSI GS NFV-SOL 013.
+            This attribute shall only be present if the subscriber requires authorization of notifications.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/SubscriptionAuthentication"
+      required:
+        - callbackUri
+
+    PolicySubscription:
+      description: >
+        This type represents a subscription related to notifications about policy changes and policy conflicts.
+        It shall comply with the provisions defined in table 5.6.2.6-1.
+      type: object
+      properties:
+        id:
+          description: >
+            Identifier of this subscription resource.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+        filter:
+          description: >
+            Filter settings for this subscription, to define the subset of all notifications this subscription
+            relates to. A particular notification is sent to the subscriber if the filter matches, or if there
+            is no filter.
+          $ref: "#/definitions/schemas/PolicyNotificationsFilter"
+        callbackUri:
+          description: >
+            The URI of the endpoint to send the notification to.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Uri"
+        _links:
+          description: >
+            Links for this resource.
+          type: object
+          properties:
+            self:
+              description: >
+                URI of this resource.
+              $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Link"
+          required:
+            - self
+      required:
+        - id
+        - callbackUri
+        - _links
+
+    PolicyNotificationsFilter:
+      description: >
+        This type represents a subscription filter related to notifications about policy changes and policy conflicts.
+        It shall comply with the provisions defined in table 5.6.3.2-1.
+        At a particular nesting level in the filter structure, the following applies: All attributes shall match in
+        order for the filter to match (logical "and" between different filter attributes). If an attribute is an array,
+        the attribute shall match if at least one of the values in the array matches (logical "or" between the values
+        of one filter attribute).
+      type: object
+      properties:
+        notificationTypes:
+          description: >
+            Match particular notification types.
+            Permitted values:
+            -	PolicyChangeNotification
+            -	PolicyConflictNotification
+            The permitted values of the "notificationTypes" attribute are spelled exactly as the names of the notification
+            types to facilitate automated code generation systems.
+          type: array
+          items:
+            type: string
+            enum:
+              - PolicyChangeNotification
+              - PolicyConflictNotification
+        policyIds:
+          description: >
+            Match particular policy identifiers.
+            For "PolicyConflictNotification", the notification is sent if any of the policies specified in the subscription
+            is impacted by the conflict, as defined in clause 5.6.2.8.
+          type: array
+          items:
+            $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+        changeTypes:
+          description: >
+            Match particular policy management operation types that cause the change of the policy.
+          type: array
+          items:
+            $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/PolicyOperationType"

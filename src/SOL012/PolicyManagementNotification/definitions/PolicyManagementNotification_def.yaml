@@ -1,0 +1,160 @@
+definitions:
+  schemas:
+    PolicyChangeNotification:
+      description: >
+        This type represents a notification about policy change. It shall comply with the provisions
+        defined in table 5.6.2.7-1.
+        This notification shall be triggered by the API producer when a policy has been changed as
+        the result of an operation of creating, transferring, deleting or modifying a policy.
+      type: object
+      properties:
+        id:
+          description: >
+            Identifier of this notification. If a notification is sent multiple times due to multiple
+            subscriptions, the "id" attribute of all these notifications shall have the same value.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+        notificationType:
+          description: >
+            Discriminator for the different notification types. Shall be set to "PolicyChangeNotification"
+            for this notification type.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/String"
+        subscriptionId:
+          description: >
+            Identifier of the subscription that this notification relates to.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+        timeStamp:
+          description: >
+            Date and time of the generation of the notification.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/DateTime"
+        policyId:
+          description: >
+            Identifier of the policy.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+        affectedVersion:
+          description: >
+            Affected version of the policy.
+            The value is the version identifier in the URI when a particular version of the policy
+            is transferred or deleted, or the selected version of the policy when the policy is
+            activated/deactivated/modified.
+            Shall be present when a particular version of the policy is impacted by the policy
+            management operation.
+            Shall be absent otherwise.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Version"
+        previousSelectedVersion:
+          description: >
+            The previous selected version of the policy.
+            Shall be present when another version of the policy has been selected.
+            Shall be absent otherwise.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Version"
+        policyModifications:
+          description: >
+            Information about the modifications of the policy. Shall be present when the changeType
+            equals to "MODIFY_POLICY". Shall be absent otherwise.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/PolicyModifications"
+        changeType:
+          description: >
+            Policy management operation that cause the change of the policy.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/PolicyOperationType"
+        _links:
+          description: >
+            Links to resources related to this notification.
+          type: object
+          properties:
+            subscription:
+              description: >
+                Link to the related subscription.
+              $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/NotificationLink"
+            objectInstance:
+              description: >
+                Link to the resource representing the policies to which the notified change applies.
+                Shall be present if the policy is accessible as a resource.
+              $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/NotificationLink"
+          required:
+            - subscription
+      required:
+        - id
+        - notificationType
+        - subscriptionId
+        - timeStamp
+        - policyId
+        - changeType
+        - _links
+
+    PolicyConflictNotification:
+      description: >
+        This type represents a notification about policy conflict. It shall comply with the provisions
+        defined in table 5.6.2.8-1.
+        This notification shall be triggered by the API producer when a policy conflict is detected,
+        and any of the policies specified in an associated notification subscription is impacted
+        by the conflict.
+      type: object
+      properties:
+        id:
+          description: >
+            Identifier of this notification. If a notification is sent multiple times due to multiple
+            subscriptions, the "id" attribute of all these notifications shall have the same value.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+        notificationType:
+          description: >
+            Discriminator for the different notification types. Shall be set to "PolicyConflictNotification"
+            for this notification type.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/String"
+        subscriptionId:
+          description: >
+            Identifier of the subscription that this notification relates to.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+        timeStamp:
+          description: >
+            Date and time of the generation of the notification.
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/DateTime"
+        policyIds:
+          description: >
+            Identifiers of the conflicting policies.
+            The policy identifier and the corresponding selected version are mapped by the order
+            in the array.
+          type: array
+          items:
+            $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Identifier"
+          minItems: 2
+        selectedVersions:
+          description: >
+            Selected versions of the conflicting policies.
+            The policy identifier and the corresponding selected version are mapped by the order
+            in the array.
+          type: array
+          items:
+            $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/Version"
+          minItems: 2
+        conflictDescription:
+          description: >
+            Description of the detected policy conflicts, e.g. conflicting events, conditions
+            or actions among the policies
+          $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/String"
+        _links:
+          description: >
+            Links to resources related to this notification.
+          type: object
+          properties:
+            subscription:
+              description: >
+                Link to the related subscription.
+              $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/NotificationLink"
+            objectInstances:
+              description: >
+                Link to the resources representing the policies to which the notified conflict applies.
+              type: array
+              items:
+                $ref: "../../definitions/SOL012_def.yaml#/definitions/schemas/NotificationLink"
+              minItems: 2
+          required:
+            - subscription
+            - objectInstances
+      required:
+        - id
+        - notificationType
+        - subscriptionId
+        - timeStamp
+        - policyIds
+        - selectedVersions
+        - conflictDescription
+        - _links

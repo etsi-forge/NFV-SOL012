@@ -15,8 +15,8 @@ info:
     name: ETSI Forge copyright notice
     url: https://forge.etsi.org/etsi-forge-copyright-notice.txt
 externalDocs:
-  description: ETSI GS NFV-SOL 012 v3.4.1
-  url: https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/012/03.04.01_60/gs_nfv-sol012v030401p.pdf
+  description: ETSI GS NFV-SOL 012 v3.7.1
+  url: https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/012/03.07.01_60/gs_NFV-SOL012v030701p.pdf
 
 security:
   - OauthSecurity:
@@ -52,25 +52,25 @@ paths:
         "201":
           $ref: '#/components/responses/Policy.Post.201'
         "400":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+          $ref: ../responses/SOL012_resp.yaml#/responses/400
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+          $ref: ../responses/SOL012_resp.yaml#/responses/404
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
 
     get:
       description: >-
@@ -78,8 +78,8 @@ paths:
         This method shall follow the provisions specified in the tables 5.5.3.3.2-1 and 5.5.3.3.2-2
         for URI query parameters, request and response data structures, and response codes.
       parameters:
-        - $ref: "../components/SOL012_params.yaml#/components/parameters/filter"
-        - $ref: "../components/SOL012_params.yaml#/components/parameters/nextpage_opaque_marker"
+        - $ref: "#/components/parameters/filter.Policies"
+        - $ref: "#/components/parameters/nextpage_opaque_marker.Policies"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
@@ -89,23 +89,23 @@ paths:
         "400":
           $ref: '#/components/responses/Policy.Get.400'
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+          $ref: ../responses/SOL012_resp.yaml#/responses/404
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
 
   "/policies/{policyId}":
     description: >
@@ -125,25 +125,25 @@ paths:
         "200":
           $ref: '#/components/responses/IndividualPolicy.Get.200'
         "400":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+          $ref: ../responses/SOL012_resp.yaml#/responses/400
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+          $ref: ../responses/SOL012_resp.yaml#/responses/404
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
 
     patch:
       description: >
@@ -164,27 +164,27 @@ paths:
         "200":
           $ref: '#/components/responses/PolicyModifications.Patch.200'
         "400":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+          $ref: ../responses/SOL012_resp.yaml#/responses/400
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+          $ref: ../responses/SOL012_resp.yaml#/responses/404
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "409":
           $ref: '#/components/responses/PolicyModifications.Patch.409'
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
 
     delete:
       description: >
@@ -200,27 +200,27 @@ paths:
         "204":
           $ref: '#/components/responses/Policy.Delete.204'
         "400":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+          $ref: ../responses/SOL012_resp.yaml#/responses/400
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+          $ref: ../responses/SOL012_resp.yaml#/responses/404
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "409":
           $ref: '#/components/responses/Policy.Delete.409'
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
 
   "/policies/{policyId}/selected_versions":
     description: >
@@ -242,25 +242,25 @@ paths:
         "200":
           $ref: '#/components/responses/PolicySelectedVersion.Get.200'
         "400":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+          $ref: ../responses/SOL012_resp.yaml#/responses/400
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
           $ref: '#/components/responses/PolicySelectedVersion.Get.404'
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
 
   "/policies/{policyId}/versions/{version}":
     description: >
@@ -281,25 +281,25 @@ paths:
         "200":
           $ref: '#/components/responses/IndividualPolicyVersion.Get.200'
         "400":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+          $ref: ../responses/SOL012_resp.yaml#/responses/400
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+          $ref: ../responses/SOL012_resp.yaml#/responses/404
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
 
     put:
       description: >
@@ -314,27 +314,27 @@ paths:
         "201":
           $ref: '#/components/responses/PolicyVersionTransfer.Put.201'
         "400":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+          $ref: ../responses/SOL012_resp.yaml#/responses/400
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+          $ref: ../responses/SOL012_resp.yaml#/responses/404
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "409":
           $ref: '#/components/responses/PolicyVersionTransfer.Put.409'
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
 
     delete:
       description: >
@@ -349,27 +349,27 @@ paths:
         "204":
           $ref: '#/components/responses/PolicyVersion.Delete.204'
         "400":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+          $ref: ../responses/SOL012_resp.yaml#/responses/400
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+          $ref: ../responses/SOL012_resp.yaml#/responses/404
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "409":
           $ref: '#/components/responses/PolicyVersion.Delete.409'
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
 
   "/subscriptions":
     description: >-
@@ -395,25 +395,25 @@ paths:
         "303":
           $ref: '#/components/responses/Subscriptions.Post.303'
         "400":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+          $ref: ../responses/SOL012_resp.yaml#/responses/400
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+          $ref: ../responses/SOL012_resp.yaml#/responses/404
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
 
     get:
       description: >-
@@ -425,31 +425,31 @@ paths:
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Version"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Authorization"
-        - $ref: "../components/SOL012_params.yaml#/components/parameters/filter"
-        - $ref: "../components/SOL012_params.yaml#/components/parameters/nextpage_opaque_marker"
+        - $ref: "#/components/parameters/filter.Subscriptions"
+        - $ref: "#/components/parameters/nextpage_opaque_marker.Subscriptions"
       responses:
         "200":
           $ref: '#/components/responses/Subscriptions.Get.200'
         "400":
           $ref: '#/components/responses/Subscriptions.Get.400'
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+          $ref: ../responses/SOL012_resp.yaml#/responses/404
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
 
   "/subscriptions/{subscriptionId}":
     description: >-
@@ -470,25 +470,25 @@ paths:
         "200":
           $ref: '#/components/responses/IndividualSubscription.Get.200'
         "400":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+          $ref: ../responses/SOL012_resp.yaml#/responses/400
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+          $ref: ../responses/SOL012_resp.yaml#/responses/404
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
 
     delete:
       description: >-
@@ -505,27 +505,27 @@ paths:
         "204":
           $ref: '#/components/responses/IndividualSubscription.Delete.204'
         "400":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/400
+          $ref: ../responses/SOL012_resp.yaml#/responses/400
         "401":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/401
+          $ref: ../responses/SOL012_resp.yaml#/responses/401
         "403":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/403
+          $ref: ../responses/SOL012_resp.yaml#/responses/403
         "404":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/404
+          $ref: ../responses/SOL012_resp.yaml#/responses/404
         "405":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/405
+          $ref: ../responses/SOL012_resp.yaml#/responses/405
         "406":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/406
+          $ref: ../responses/SOL012_resp.yaml#/responses/406
         "409":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/409
+          $ref: ../responses/SOL012_resp.yaml#/responses/409
         "422":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/422
+          $ref: ../responses/SOL012_resp.yaml#/responses/422
         "500":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/500
+          $ref: ../responses/SOL012_resp.yaml#/responses/500
         "503":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/503
+          $ref: ../responses/SOL012_resp.yaml#/responses/503
         "504":
-          $ref: ../components/SOL012_resp.yaml#/components/responses/504
+          $ref: ../responses/SOL012_resp.yaml#/responses/504
       
 components:
   parameters:
@@ -538,7 +538,7 @@ components:
       in: path
       required: true
       schema:
-        $ref: '../components/SOL012_schemas.yaml#/components/schemas/Identifier'
+        $ref: '../definitions/SOL012_def.yaml#/definitions/schemas/Identifier'
 
     version:
       name: version
@@ -560,228 +560,62 @@ components:
       in: path
       required: true
       schema:
-        $ref: '../components/SOL012_schemas.yaml#/components/schemas/Identifier'
+        $ref: '../definitions/SOL012_def.yaml#/definitions/schemas/Identifier'
 
-  schemas:
-    CreatePolicyRequest:
+    filter.Policies:
+      name: filter
       description: >
-        This type represents request parameters for creating a policy. It shall comply with the provisions defined
-        in table 5.6.2.2-1.
-      type: object
-      properties:
-        designer:
-          description: >
-            Human readable name of the designer of the policy.
-          type: string
-        name:
-          description: >
-            Human readable name of the policy.
-          type: string
-        pfId:
-          description: >
-            Identifier of the Policy Function (PF) which enforces the policy. Shall be present when the
-            PF is not the API producer and shall be absent otherwise.
-            Shall be absent when the API producer is NFVO-N.
-            More information concerning the PF can be found in ETSI GR NFV-IFA 023 [i.2].
-            For example, the PF can be a VNFM or VIM when the API producer is an NFVO.
-          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
-        associations:
-          description: >
-            Initial value of the “associations” attribute in the “Policy” data structure which represents the policy.
-            Shall be absent when the association feature is not applicable for the PF.
-            The associations refer to identifiers of entities that the PF manages. E.g., if the PF is a VNFM,
-            the policy can associate to VNF instances; if the PF is NFVO, the policy can associate to an NS instances.
-            How the PF determines the scope of applicability of the policy when this attribute is absent is
-            outside the scope of the present document.
-          type: array
-          items:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
-      required:
-        - designer
-        - name
+        Attribute-based filtering expression according to clause 5.2 of ETSI
+        GS NFV-SOL 013 [7].
+        The API producer shall support receiving this parameter as part of
+        the URI query string. The API consumer may supply this
+        parameter.
+        All attribute names that appear in the Policy and in data types
+        referenced from it shall be supported by the API producer in the
+        filter expression.
+      in: query
+      required: false
+      schema:
+        type: string
 
-    Policy:
-      description: >-
-        This type represents an individual policy. It shall comply with the provisions defined in table 5.6.2.3-1.
-      type: object
-      properties:
-        id:
-          description: >
-            Identifier of the policy.
-          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
-        designer:
-          description: >
-            Human readable name of the designer of the policy.
-          type: string
-        name:
-          description: >
-            Human readable name of the policy.
-          type: string
-        pfId:
-          description: >
-            Identifier of the Policy Function (PF) which enforces the policy. Shall be present when the PF is not
-            the API producer and shall be absent otherwise.
-            Shall be absent when the API producer is NFVO-N.
-            More information concerning the PF can be found in ETSI GR NFV-IFA 023 [i.2].
-            For example, the PF can be a VNFM or VIM when the API producer is an NFVO.
-          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
-        versions:
-          description: >
-            Versions of the policy. Shall be present if at least one version of the policy has been transferred.
-          type: array
-          items:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
-        selectedVersion:
-          description: >
-            Selected version of the policy. Shall be present if one or more versions of the policy have been transferred.
-          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Version"
-        activationStatus:
-          description: >
-            Status of the policy on whether it is activated or deactivated.
-          $ref: "../components/SOL012_schemas.yaml#/components/schemas/ActivationStatus"
-        transferStatus:
-          description: >
-            Status of the policy on whether the content of the policy has been transferred.
-          $ref: "../components/SOL012_schemas.yaml#/components/schemas/TransferStatus"
-        associations:
-          description: >
-            Identifiers of the entities that the PF manages and to which the policy associates to.
-            Shall be absent when the association feature is not applicable for the PF.
-            The associations refer to identifiers of entities that the PF manages.
-            E.g., if the PF is a VNFM, the policy can associate to VNF instances; if the PF is NFVO, the policy can
-            associate to an NS instances.
-            How the PF determines the scope of applicability of the policy when this attribute is absent is
-            outside the scope of the present document.
-          type: array
-          items:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
-        _links:
-          description: >
-            Links for this resource
-          type: object
-          properties:
-            self:
-              description: >
-                URI of this resource
-              $ref: "../components/SOL012_schemas.yaml#/components/schemas/Link"
-            selected:
-              description: >
-                URI of the selected version of this policy, if exists.
-              $ref: "../components/SOL012_schemas.yaml#/components/schemas/Link"
-            versions:
-              description: >
-                URIs of all the transferred versions of this policy, if exists.
-              type: array
-              items:
-                $ref: "../components/SOL012_schemas.yaml#/components/schemas/Link"
-          required:
-            - self
-      required:
-        - id
-        - designer
-        - name
-        - activationStatus
-        - transferStatus
-        - _links
-
-    PolicySubscriptionRequest:
+    nextpage_opaque_marker.Policies:
+      name: nextpage_opaque_marker
       description: >
-        This type represents a subscription request related to notifications about policy changes 
-        and policy conflicts. It shall comply with the provisions defined in table 5.6.2.5-1.
-      type: object
-      properties:
-        filter:
-          description: >
-            Filter settings for this subscription, to define the subset of all notifications this subscription relates to. 
-            A particular notification is sent to the subscriber if the filter matches, or if there is no filter.
-          $ref: "#/components/schemas/PolicyNotificationsFilter"
-        callbackUri:
-          description: >
-            The URI of the endpoint to send the notification to.
-          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Uri"
-        authentication:
-          description: >
-            Authentication parameters to configure the use of Authorization when sending notifications 
-            corresponding to this subscription, as defined in clause 8.3.4 of ETSI GS NFV-SOL 013.
-            This attribute shall only be present if the subscriber requires authorization of notifications.
-          $ref: "../components/SOL012_schemas.yaml#/components/schemas/SubscriptionAuthentication"
-      required:
-        - callbackUri
+        Marker to obtain the next page of a paged response. Shall be
+        supported by the API producer if it supports alternative 2 (paging)
+        according to clause 5.4.2.1 of ETSI GS NFV-SOL 013 [7] for this
+        resource.
+      in: query
+      required: false
+      schema:
+        type: string
 
-    PolicySubscription:
+    filter.Subscriptions:
+      name: filter
       description: >
-        This type represents a subscription related to notifications about policy changes and policy conflicts. 
-        It shall comply with the provisions defined in table 5.6.2.6-1.
-      type: object
-      properties:
-        id:
-          description: >
-            Identifier of this subscription resource.
-          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
-        filter:
-          description: >
-            Filter settings for this subscription, to define the subset of all notifications this subscription 
-            relates to. A particular notification is sent to the subscriber if the filter matches, or if there 
-            is no filter.
-          $ref: "#/components/schemas/PolicyNotificationsFilter"
-        callbackUri:
-          description: >
-            The URI of the endpoint to send the notification to.
-          $ref: "../components/SOL012_schemas.yaml#/components/schemas/Uri"
-        _links:
-          description: >
-            Links for this resource.
-          type: object
-          properties:
-            self:
-              description: >
-                URI of this resource.
-              $ref: "../components/SOL012_schemas.yaml#/components/schemas/Link"
-          required:
-            - self  
-      required:
-        - id
-        - callbackUri
-        - _links
+        Attribute-based filtering expression according to clause 5.2 of ETSI
+        GS NFV-SOL 013 [7].
+        The API producer shall support receiving this parameter as part of the
+        URI query string. The API consumer may supply this parameter.
+        All attribute names that appear in the PolicySubscription and in data types
+        referenced from it shall be supported by the API producer in the filter
+        expression.
+      in: query
+      required: false
+      schema:
+        type: string
 
-    PolicyNotificationsFilter:
+    nextpage_opaque_marker.Subscriptions:
+      name: nextpage_opaque_marker
       description: >
-        This type represents a subscription filter related to notifications about policy changes and policy conflicts. 
-        It shall comply with the provisions defined in table 5.6.3.2-1.
-        At a particular nesting level in the filter structure, the following applies: All attributes shall match in 
-        order for the filter to match (logical "and" between different filter attributes). If an attribute is an array, 
-        the attribute shall match if at least one of the values in the array matches (logical "or" between the values 
-        of one filter attribute).
-      type: object
-      properties:
-        notificationTypes:
-          description: >
-            Match particular notification types.
-            Permitted values:
-            -	PolicyChangeNotification
-            -	PolicyConflictNotification
-            The permitted values of the "notificationTypes" attribute are spelled exactly as the names of the notification 
-            types to facilitate automated code generation systems.
-          type: array
-          items:
-            type: string
-            enum:
-              - PolicyChangeNotification
-              - PolicyConflictNotification
-        policyIds:
-          description: >
-            Match particular policy identifiers.
-            For "PolicyConflictNotification", the notification is sent if any of the policies specified in the subscription 
-            is impacted by the conflict, as defined in clause 5.6.2.8.
-          type: array
-          items:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/Identifier"
-        changeTypes:
-          description: >
-            Match particular policy management operation types that cause the change of the policy.
-          type: array
-          items:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/PolicyOperationType"
+        Marker to obtain the next page of a paged response. Shall be supported
+        by the API producer if the API producer supports alternative 2 (paging)
+        according to clause 5.4.2.1 of ETSI GS NFV-SOL 013 [7] for this
+        resource.
+      in: query
+      required: false
+      schema:
+        type: string
 
   responses:
     Policy.Post.201:
@@ -813,7 +647,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Policy"
+            $ref: "definitions/PolicyManagement_def.yaml#/definitions/schemas/Policy"
 
     Policy.Get.200:
       description: >
@@ -852,7 +686,7 @@ components:
           schema:
             type: array
             items:
-              $ref: "#/components/schemas/Policy"
+              $ref: "definitions/PolicyManagement_def.yaml#/definitions/schemas/Policy"
 
     Policy.Get.400:
       description: >
@@ -879,7 +713,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../definitions/SOL012_def.yaml#/definitions/schemas/ProblemDetails"
 
     IndividualPolicy.Get.200:
       description: >
@@ -901,7 +735,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Policy"
+            $ref: "definitions/PolicyManagement_def.yaml#/definitions/schemas/Policy"
 
     PolicyModifications.Patch.200:
       description: >
@@ -925,7 +759,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/PolicyModifications"
+            $ref: "../definitions/SOL012_def.yaml#/definitions/schemas/PolicyModifications"
 
     PolicyModifications.Patch.409:
       description: >
@@ -956,7 +790,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../definitions/SOL012_def.yaml#/definitions/schemas/ProblemDetails"
 
     Policy.Delete.204:
       description: >
@@ -1003,7 +837,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../definitions/SOL012_def.yaml#/definitions/schemas/ProblemDetails"
 
     PolicySelectedVersion.Get.200:
       description: >
@@ -1063,7 +897,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../definitions/SOL012_def.yaml#/definitions/schemas/ProblemDetails"
 
     IndividualPolicyVersion.Get.200:
       description: >
@@ -1141,7 +975,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../definitions/SOL012_def.yaml#/definitions/schemas/ProblemDetails"
 
     PolicyVersion.Delete.204:
       description: >
@@ -1188,7 +1022,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../definitions/SOL012_def.yaml#/definitions/schemas/ProblemDetails"
 
     Subscriptions.Post.201:
       description: >
@@ -1220,7 +1054,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/PolicySubscription"
+            $ref: "definitions/PolicyManagement_def.yaml#/definitions/schemas/PolicySubscription"
 
     Subscriptions.Post.303:
       description: >
@@ -1288,7 +1122,7 @@ components:
           schema: 
             type: array
             items:
-              $ref: "#/components/schemas/PolicySubscription"
+              $ref: "definitions/PolicyManagement_def.yaml#/definitions/schemas/PolicySubscription"
 
     Subscriptions.Get.400:
       description: >
@@ -1317,7 +1151,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/ProblemDetails"
+            $ref: "../definitions/SOL012_def.yaml#/definitions/schemas/ProblemDetails"
         
     IndividualSubscription.Get.200:
       description: >
@@ -1341,7 +1175,7 @@ components:
       content:
         application/json:
           schema: 
-            $ref: "#/components/schemas/PolicySubscription"
+            $ref: "definitions/PolicyManagement_def.yaml#/definitions/schemas/PolicySubscription"
         
     IndividualSubscription.Delete.204:
       description: >
@@ -1370,7 +1204,7 @@ components:
       content:
         application/json:
           schema:
-           $ref: "#/components/schemas/CreatePolicyRequest"
+           $ref: "definitions/PolicyManagement_def.yaml#/definitions/schemas/CreatePolicyRequest"
       required: true
 
     PolicyModifications:
@@ -1379,7 +1213,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "../components/SOL012_schemas.yaml#/components/schemas/PolicyModifications"
+            $ref: "../definitions/SOL012_def.yaml#/definitions/schemas/PolicyModifications"
 
     PolicySubscriptionRequest:
       description: >
@@ -1387,4 +1221,4 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/PolicySubscriptionRequest"
+            $ref: "definitions/PolicyManagement_def.yaml#/definitions/schemas/PolicySubscriptionRequest"

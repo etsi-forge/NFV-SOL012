@@ -34,7 +34,7 @@ endpoints:
           content:
             application/json:
               schema:
-                $ref: '../components/SOL012_schemas.yaml#/components/schemas/ApiVersionInformation'
+                $ref: '../definitions/SOL012_def.yaml#/definitions/schemas/ApiVersionInformation'
           headers:
             Content-Type:
               description: The MIME type of the body of the response.
@@ -58,30 +58,30 @@ endpoints:
                 maximum: 1
                 minimum: 1
         400:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/400'
+          $ref: '../responses/SOL012_resp.yaml#/responses/400'
         401:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/401'
+          $ref: '../responses/SOL012_resp.yaml#/responses/401'
         403:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/403'
+          $ref: '../responses/SOL012_resp.yaml#/responses/403'
         404:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/404'
+          $ref: '../responses/SOL012_resp.yaml#/responses/404'
         405:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/405'
+          $ref: '../responses/SOL012_resp.yaml#/responses/405'
         406:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/406'
+          $ref: '../responses/SOL012_resp.yaml#/responses/406'
         413:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/413'
+          $ref: '../responses/SOL012_resp.yaml#/responses/413'
         414:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/414'
+          $ref: '../responses/SOL012_resp.yaml#/responses/414'
         416:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/416'
+          $ref: '../responses/SOL012_resp.yaml#/responses/416'
         422:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/422'
+          $ref: '../responses/SOL012_resp.yaml#/responses/422'
         429:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/429'
+          $ref: '../responses/SOL012_resp.yaml#/responses/429'
         500:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/500'
+          $ref: '../responses/SOL012_resp.yaml#/responses/500'
         503:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/503'
+          $ref: '../responses/SOL012_resp.yaml#/responses/503'
         504:
-          $ref: '../components/SOL012_resp.yaml#/components/responses/504'
+          $ref: '../responses/SOL012_resp.yaml#/responses/504'
