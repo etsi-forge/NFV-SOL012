@@ -1,6 +1,6 @@
 # NFV SOL012 - OpenAPIs for the Policy Management Interface
 
-This repository contains OpenAPIs for ETSI GS NFV-SOL 012, RESTful protocols 
+This repository contains OpenAPIs for ETSI GS NFV-SOL 012 v4.4.1, RESTful protocols 
 specification for the Policy Management Interface.
 
 More information at [NFV Solutions wiki](https://nfvwiki.etsi.org/index.php?title=NFV_Solutions).
