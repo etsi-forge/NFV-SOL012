@@ -15,8 +15,8 @@ info:
     name: ETSI Forge copyright notice
     url: https://forge.etsi.org/etsi-forge-copyright-notice.txt
 externalDocs:
-  description: ETSI GS NFV-SOL 012 v3.7.1
-  url: https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/012/03.07.01_60/gs_NFV-SOL012v030701p.pdf
+  description: ETSI GS NFV-SOL 012 v4.4.1
+  url: https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/012/04.04.01_60/gs_NFV-SOL012v040401p.pdf
 
 security:
   - OauthSecurity:
@@ -153,7 +153,9 @@ paths:
         Modification of a policy includes three functionalities: activating/deactivating the policy,
         changing the associations of the policy, and changing the selected version of the policy.
         The three functionalities may be combined flexibly in one request unless there's conflict with
-        the state of the policy.
+        the state of the policy. With respect to changing the associations, refer also to the provisions specified in
+        clause 5.5.6.3.3 regarding the initial setting of the "associations" attribute values in the "Individual policy"
+        representation, which can be modified using the present method.
       parameters:
         - $ref: "../components/SOL012_params.yaml#/components/parameters/Accept"
         - $ref: "../components/SOL012_params.yaml#/components/parameters/ContentType"
@@ -304,6 +306,17 @@ paths:
     put:
       description: >
         The PUT method transfers the content of a particular version of an individual policy.
+        As the result of successfully executing this method, the API producer shall update the "associations"
+        attribute in the representation of the "Individual policy" resource as follows:
+        -	If no associations were provided in the initial creation of the "Individual policy" resource
+            (see clause 5.5.3.3.1) and the policy content includes relevant associations information, the API producer
+            shall set the values of "associations" attribute according to the information in the policy content.
+        -	If associations were provided in the initial creation of the "Individual policy" resource
+            (see clause 5.5.3.3.1) or current values are already set on the "associations" attribute in the
+            representation of the "Individual policy" resource, and the policy content includes relevant associations
+            information, the API producer shall not apply the values present in the policy content
+            (i.e., values provided via the API take precedence).
+
         This method shall follow the provisions specified in the tables 5.5.6.3.3-1 and 5.5.6.3.3-2 for
         URI query parameters, request and response data structures, and response codes.
       parameters:

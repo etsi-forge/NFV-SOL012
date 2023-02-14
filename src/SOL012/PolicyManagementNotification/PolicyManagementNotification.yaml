@@ -15,8 +15,8 @@ info:
     name: ETSI Forge copyright notice
     url: https://forge.etsi.org/etsi-forge-copyright-notice.txt
 externalDocs:
-  description: ETSI GS NFV-SOL 012 v3.7.1
-  url: https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/012/03.07.01_60/gs_NFV-SOL012v030701p.pdf
+  description: ETSI GS NFV-SOL 012 v4.4.1
+  url: https://www.etsi.org/deliver/etsi_gs/NFV-SOL/001_099/012/04.04.01_60/gs_NFV-SOL012v040401p.pdf
 
 security:
   - OauthSecurity:
